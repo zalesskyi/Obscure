@@ -1,0 +1,18 @@
+Jake Wharton - databinding.textview
+
+DI - dagger
+
+Butterknife
+
+Realm - DB (realm.io)
+
+
+
+Structure of app:
+1) SplashScreen - activity
+2) Navigation activity
+3) AuthActivity: 
+	3.1) sSignInFragment
+	3.2) SignUp
+	3.3) Dialog Recover
+
