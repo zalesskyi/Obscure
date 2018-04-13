@@ -1,5 +1,9 @@
 package com.zalesskyi.android.obscure.package_presenters;
 
+import android.app.Application;
+
+import com.zalesskyi.android.obscure.utils.INetworkCheck;
+import com.zalesskyi.android.obscure.utils.IValidator;
 import com.zalesskyi.android.obscure.view.IBaseView;
 import com.zalesskyi.android.obscure.interactors.IInteractorContract;
 
@@ -9,6 +13,9 @@ import com.zalesskyi.android.obscure.interactors.IInteractorContract;
 
 abstract class BasePresenter<V extends IBaseView> {
     protected V view;
+    protected IValidator validator;
+    protected INetworkCheck networckCheck;
+    protected Application application;
     protected IInteractorContract interactor;
 
     public void init(V v) {

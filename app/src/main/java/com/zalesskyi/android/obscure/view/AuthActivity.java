@@ -1,23 +1,33 @@
 package com.zalesskyi.android.obscure.view;
 
+import android.app.Application;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.zalesskyi.android.obscure.ObscureApi;
 import com.zalesskyi.android.obscure.R;
+import com.zalesskyi.android.obscure.app.ObscureApp;
+import com.zalesskyi.android.obscure.interactors.IInteractorContract;
 import com.zalesskyi.android.obscure.package_presenters.AuthPresenterImpl;
 import com.zalesskyi.android.obscure.package_presenters.IPresenterContract;
+import com.zalesskyi.android.obscure.utils.INetworkCheck;
+import com.zalesskyi.android.obscure.utils.IValidator;
 import com.zalesskyi.android.obscure.view.IBaseView;
+
+import javax.inject.Inject;
 
 public class AuthActivity extends BaseActivity implements IBaseView.IAuthView {
 
+    @Inject
     IPresenterContract.IAuthPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        presenter = new AuthPresenterImpl();
+        ObscureApp.get(this).getAppComponent().inject(this);
         presenter.init(this);
+        onAuthListener.openFirstScreen(1);
     }
 
     @Override
