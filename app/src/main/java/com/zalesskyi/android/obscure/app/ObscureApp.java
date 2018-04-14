@@ -9,6 +9,9 @@ import com.zalesskyi.android.obscure.app.di.AppModule;
 import com.zalesskyi.android.obscure.app.di.DaggerAppComponent;
 import com.zalesskyi.android.obscure.app.di.PresenterModule;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 
 public class ObscureApp extends Application {
 
@@ -26,6 +29,7 @@ public class ObscureApp extends Application {
     public void onCreate() {
         super.onCreate();
         this.initAppComponent();
+        initRealmConfiguration();
     }
 
     private void initAppComponent(){
@@ -34,5 +38,14 @@ public class ObscureApp extends Application {
                 .apiModule(new ApiModule())
                 .presenterModule(new PresenterModule())
                 .build();
+    }
+
+    private void initRealmConfiguration() {
+        Realm.init(this);
+        RealmConfiguration realmConfig = new RealmConfiguration.Builder()
+                .name("interpipe.realm")
+                .schemaVersion(1)
+                .build();
+        Realm.setDefaultConfiguration(realmConfig);
     }
 }
