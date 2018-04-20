@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.zalesskyi.android.obscure">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".app.ObscureApp"
@@ -17,12 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.AuthActivity">
+        <activity android:name=".view.auth_operation.activities.AuthActivity"/>
+        <activity android:name=".view.auth_operation.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".view.auth_operation.activities.NavigationActivity">
+        </activity>
+        <activity android:name=".view.main_operation.activities.MainActivity">
         </activity>
     </application>
 

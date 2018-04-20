@@ -2,14 +2,11 @@ package com.zalesskyi.android.obscure.package_presenters;
 
 import android.app.Application;
 
-import com.zalesskyi.android.obscure.interactors.AuthInteractorImpl;
 import com.zalesskyi.android.obscure.interactors.IInteractorContract;
 import com.zalesskyi.android.obscure.utils.INetworkCheck;
 import com.zalesskyi.android.obscure.utils.IValidator;
-import com.zalesskyi.android.obscure.view.AuthActivity;
+import com.zalesskyi.android.obscure.view.auth_operation.activities.AuthActivity;
 import com.zalesskyi.android.obscure.view.IBaseView;
-
-import javax.inject.Inject;
 
 
 public class AuthPresenterImpl extends BasePresenter<IBaseView.IAuthView>

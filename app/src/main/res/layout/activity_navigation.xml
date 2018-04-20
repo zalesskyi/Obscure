@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/main_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/logo_obscure"
+            android:layout_width="185dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_obscure" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="@string/navigation_activity_welcome_text"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="1sp"
+            android:textColor="#b3ffffff"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            tools:text="Our application is a consulting service that allows you to quickly and easily obtain reliable and necessary information on any topic." />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="11sp"
+            android:textColor="#b3ffffff"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            tools:text="Already have an account?" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_navigation_activity_sign_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="left|bottom"
+            android:text="sign in"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_navigation_activity_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="left|bottom"
+            android:text="skip"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_navigation_activity_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="right|bottom"
+            android:text="sign up>"
+            android:textColor="#ffffff"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,6 +1,43 @@
 <resources>
     <string name="app_name">Obscure</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">Main screen</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!--fragment sign_in-->
+    <string name="txt_btn_signin">SignIn</string>
+    <string name="txt_et_hint_put_password">Password</string>
+    <string name="txt_et_hint_put_email">Email</string>
+    <string name="txt_btn_signup">Sign Up</string>
+    <string name="txt_tv_sign_in">Sign In</string>
+    <string name="txt_tv_reset_account">Reset Account</string>
+    <string name="txt_et_confirm_password">Confirm password</string>
+    <string name="txt_dialog_cancel">Cancel</string>
+    <string name="txt_dialog_ok">Ok</string>
+    <string name="error_password_miss_match">password miss match</string>
+    <string name="action_sign_in">sign in</string>
+    <string name="action_sign_up">sign up</string>
+    <string name="action_forgot_password">forgot password</string>
+    <string name="action_login_social">login social</string>
+    <string name="facebook_scope_profile">public_profile</string>
+    <string name="facebook_scope_user_friends">user_friends</string>
+    <string name="facebook_app_id">2041631762786916</string>
+    <string name="fb_login_protocol_scheme">fb2041631762786916</string>
+    <string name="error_text_facebook_error">Error login</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="action_return">Return</string>
+    <string name="error_network">Network is not available</string>
+    <string name="navigation_activity_welcome_text">WELCOME TO OBSCURE</string>
+
 </resources>

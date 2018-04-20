@@ -11,7 +11,7 @@ public class User extends RealmObject {
     @PrimaryKey
     private long realm_id;
 
-    User() {
+    public User() {
 
     }
 

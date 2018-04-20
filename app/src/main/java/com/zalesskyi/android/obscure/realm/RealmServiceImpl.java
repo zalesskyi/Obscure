@@ -4,7 +4,6 @@ import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
 import rx.Observable;
-import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -36,13 +35,13 @@ public class RealmServiceImpl implements IRealmService {
 
     @Override
     public <T extends RealmObject> Observable<T> addObject(T object, Class<T> clazz) {
-        long id;
+        /*long id;
         try {
             id = mRealm.where(clazz).max("id").intValue() + 1;
         } catch (Exception e) {
             id = 0L;
-        }
-        ((User) object).setId(id);
+        }*/
+        ((User) object).setId(1);
         return Observable.just(object)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -100,6 +99,8 @@ public class RealmServiceImpl implements IRealmService {
                 .flatMap(t -> Observable.just(t)
                         .doOnSubscribe(mRealm::beginTransaction)
                         .doOnUnsubscribe(mRealm::commitTransaction))
+                .doOnError(Throwable::printStackTrace)
                 .map(type -> mRealm.where(clazz).findAll().last());
+        // todo {No results were found}
     }
 }

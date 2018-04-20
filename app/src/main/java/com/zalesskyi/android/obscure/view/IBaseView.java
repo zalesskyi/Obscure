@@ -9,4 +9,13 @@ public interface IBaseView {
     interface IAuthView extends IBaseView {
         void openMain();
     }
+
+    interface ISplashView extends IBaseView {
+        void checkUserData(boolean isContains);
+    }
+
+    interface IMainView extends IBaseView {
+        void doneLogout(String token, int type);
+        void closeMain();
+    }
 }

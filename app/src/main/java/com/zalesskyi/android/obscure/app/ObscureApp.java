@@ -43,7 +43,7 @@ public class ObscureApp extends Application {
     private void initRealmConfiguration() {
         Realm.init(this);
         RealmConfiguration realmConfig = new RealmConfiguration.Builder()
-                .name("interpipe.realm")
+                .name("obscure.realm")
                 .schemaVersion(1)
                 .build();
         Realm.setDefaultConfiguration(realmConfig);

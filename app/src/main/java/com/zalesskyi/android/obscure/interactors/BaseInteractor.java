@@ -9,4 +9,5 @@ import com.zalesskyi.android.obscure.ObscureApi;
 abstract class BaseInteractor {
     protected ObscureApi api;
 
+
 }

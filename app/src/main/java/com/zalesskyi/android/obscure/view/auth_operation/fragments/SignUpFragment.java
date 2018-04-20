@@ -1,8 +1,7 @@
-package com.zalesskyi.android.obscure.view;
+package com.zalesskyi.android.obscure.view.auth_operation.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zalesskyi.android.obscure.R;
+import com.zalesskyi.android.obscure.view.IAuthListener;
 
 
 public class SignUpFragment extends Fragment {
