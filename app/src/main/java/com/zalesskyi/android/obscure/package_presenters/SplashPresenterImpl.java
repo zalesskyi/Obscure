@@ -22,7 +22,7 @@ public class SplashPresenterImpl extends BasePresenter<IBaseView.ISplashView>
 
     @Override
     public void doCheckUserData() {
-        realmService.getLastObject(User.class).subscribe(user -> {
+        realmService.getObject(1, User.class).subscribe(user -> {
             view.checkUserData(user != null);
         });
     }

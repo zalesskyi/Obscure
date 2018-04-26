@@ -8,14 +8,6 @@
     android:layout_height="match_parent"
     tools:context="com.zalesskyi.android.obscure.view.main_operation.activities.MainActivity">
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/main_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:scrollbars="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -29,6 +21,8 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:layout_scrollFlags="scroll|enterAlways"/>
     </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_main"/>
 
 
     <android.support.design.widget.BottomNavigationView

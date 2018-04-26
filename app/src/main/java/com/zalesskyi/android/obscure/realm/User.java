@@ -10,6 +10,7 @@ import io.realm.annotations.PrimaryKey;
 public class User extends RealmObject {
     @PrimaryKey
     private long realm_id;
+    private String email;
 
     public User() {
 
@@ -17,5 +18,9 @@ public class User extends RealmObject {
 
     public void setId(long id) {
         realm_id = id;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -63,8 +63,8 @@ public class RealmServiceImpl implements IRealmService {
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(t -> Observable.just(t)
                         .doOnSubscribe(mRealm::beginTransaction)
-                        .doOnUnsubscribe(mRealm::commitTransaction))
-                .map(type -> mRealm.where(clazz).findAll());
+                        .doOnUnsubscribe(mRealm::commitTransaction)
+                        .map(type -> mRealm.where(clazz).findAll()));   // todo clazz == type
     }
 
     @Override
@@ -98,9 +98,25 @@ public class RealmServiceImpl implements IRealmService {
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(t -> Observable.just(t)
                         .doOnSubscribe(mRealm::beginTransaction)
-                        .doOnUnsubscribe(mRealm::commitTransaction))
-                .doOnError(Throwable::printStackTrace)
-                .map(type -> mRealm.where(clazz).findAll().last());
+                        .doOnUnsubscribe(mRealm::commitTransaction)
+                        .doOnError(Throwable::printStackTrace)
+                        .map(type -> mRealm.where(clazz).findAll().last()));
         // todo {No results were found}
     }
+
+    @Override
+    public <T extends RealmObject> Observable<T> getObject(long id, Class<T> clazz) {
+        return Observable.just(clazz)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError(Throwable::printStackTrace)
+                .flatMap(t -> Observable.just(t)
+                        .doOnSubscribe(mRealm::beginTransaction)
+                        .doOnUnsubscribe(() -> {
+                            mRealm.commitTransaction();
+                        })
+                        .doOnError(Throwable::printStackTrace)
+                        .map(type->mRealm.where(type).equalTo("realm_id", id).findFirst()));
+    }
+
 }

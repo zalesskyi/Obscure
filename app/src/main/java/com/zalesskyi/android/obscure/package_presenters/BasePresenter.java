@@ -15,7 +15,7 @@ import com.zalesskyi.android.obscure.interactors.IInteractorContract;
 abstract class BasePresenter<V extends IBaseView> {
     protected V view;
     protected IValidator validator;
-    protected INetworkCheck networckCheck;
+    protected INetworkCheck networkCheck;
     protected Application application;
     protected IInteractorContract interactor;
     protected IRealmService realmService;

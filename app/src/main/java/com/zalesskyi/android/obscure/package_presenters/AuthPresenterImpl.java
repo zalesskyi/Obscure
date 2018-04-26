@@ -3,6 +3,8 @@ package com.zalesskyi.android.obscure.package_presenters;
 import android.app.Application;
 
 import com.zalesskyi.android.obscure.interactors.IInteractorContract;
+import com.zalesskyi.android.obscure.realm.IRealmService;
+import com.zalesskyi.android.obscure.realm.User;
 import com.zalesskyi.android.obscure.utils.INetworkCheck;
 import com.zalesskyi.android.obscure.utils.IValidator;
 import com.zalesskyi.android.obscure.view.auth_operation.activities.AuthActivity;
@@ -12,13 +14,13 @@ import com.zalesskyi.android.obscure.view.IBaseView;
 public class AuthPresenterImpl extends BasePresenter<IBaseView.IAuthView>
         implements IPresenterContract.IAuthPresenter<IBaseView.IAuthView> {
 
-
     public AuthPresenterImpl(Application application, IInteractorContract interactor,
-                             IValidator validator, INetworkCheck networkCheck){
+                             IValidator validator, INetworkCheck networkCheck, IRealmService realmService){
         this.application = application;
         this.interactor = interactor;
         this.validator = validator;
-        this.networckCheck = networkCheck;
+        this.networkCheck = networkCheck;
+        this.realmService = realmService;
     }
 
     @Override
@@ -33,13 +35,25 @@ public class AuthPresenterImpl extends BasePresenter<IBaseView.IAuthView>
 
     @Override
     public void doSignIn(String email, String password) {
-        this.interactor.toDoSignIn(email, password).doOnRequest(l -> view.showProgress())
+        /*this.interactor.toDoSignIn(email, password).doOnRequest(l -> view.showProgress())
                 .subscribe(response -> {
                     if (response != null) {
                         view.openMain();
                     }
                 }, err -> view.showError(err.getMessage()),
-                        () -> view.hideProgress());
+                        () -> view.hideProgress());*/
+
+        if (!networkCheck.isOnline()) {
+            view.showError("No connection");
+            return;
+        }
+        User user = new User();
+        user.setId(1);
+        user.setEmail(email);
+        realmService.addObject(user, User.class)
+                .subscribe(userCopy -> {
+                    boolean isOk = userCopy != null; // todo replace with callback
+                });
     }
 
     @Override

@@ -20,8 +20,8 @@ public class PresenterModule {
     @Provides
     @AppScope
     IPresenterContract.IAuthPresenter providesAuthPresenter(Application application, IInteractorContract interactor,
-                                                            IValidator validator, INetworkCheck networkCheck){
-        return new AuthPresenterImpl(application, interactor, validator, networkCheck);
+                                                            IValidator validator, INetworkCheck networkCheck, IRealmService realmService){
+        return new AuthPresenterImpl(application, interactor, validator, networkCheck, realmService);
     }
 
     @Provides

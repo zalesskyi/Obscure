@@ -18,4 +18,5 @@ public interface IRealmService {
     <T extends RealmObject> Observable<Class<T>> deleteObject(long id, Class<T> clazz);
     <T extends RealmObject> Observable<Class<T>> deleteAllObjects(Class<T> clazz);
     <T extends RealmObject> Observable<T> getLastObject(Class<T> clazz);
+    <T extends RealmObject> Observable<T> getObject(long id, Class<T> clazz);
 }

@@ -40,7 +40,7 @@
             android:textColor="#b3ffffff"
             android:textSize="16sp"
             android:textStyle="normal"
-            tools:text="Our application is a consulting service that allows you to quickly and easily obtain reliable and necessary information on any topic." />
+            tools:text="Our application is a consulting service that allows you to quickly and easily obtain reliable and necessary information on any event." />
 
         <TextView
             android:layout_width="wrap_content"

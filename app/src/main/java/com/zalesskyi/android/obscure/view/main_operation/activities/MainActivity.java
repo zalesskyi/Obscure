@@ -1,9 +1,13 @@
 package com.zalesskyi.android.obscure.view.main_operation.activities;
 
+import android.content.Intent;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,14 +15,32 @@ import com.zalesskyi.android.obscure.R;
 import com.zalesskyi.android.obscure.package_presenters.IPresenterContract;
 import com.zalesskyi.android.obscure.package_presenters.MainPresenterImpl;
 import com.zalesskyi.android.obscure.view.IBaseView;
-import com.zalesskyi.android.obscure.view.main_operation.adapters.MainListAdapter;
+import com.zalesskyi.android.obscure.view.auth_operation.activities.NavigationActivity;
+import com.zalesskyi.android.obscure.view.main_operation.fragments.MainFragment;
 
 public class MainActivity extends AppCompatActivity implements IBaseView.IMainView {
+    private static final String TAG = "MainActivity";
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private BottomNavigationView mNavigationView;
+    private FragmentManager mFragmentManager;
 
     private IPresenterContract.IMainPresenter mPresenter;
+
+    private BottomNavigationView.OnNavigationItemSelectedListener
+            mOnItemBottomItemSelectedListener = item -> {
+                if (item.getItemId() == R.id.navigation_home) {
+                    Log.i(TAG, "Go home");
+                    return true;
+                } else if (item.getItemId() == R.id.navigation_dashboard) {
+                    Log.i(TAG, "Go to the dashboard");
+                    return true;
+                } else if (item.getItemId() == R.id.navigation_notifications) {
+                    Log.i(TAG, "Go to the notifications");
+                    return true;
+                } else {
+                    return false;
+                }
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +50,23 @@ public class MainActivity extends AppCompatActivity implements IBaseView.IMainVi
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mFragmentManager = getSupportFragmentManager();
+
+        mNavigationView = findViewById(R.id.navigation);
+        mNavigationView.setOnNavigationItemSelectedListener(mOnItemBottomItemSelectedListener);
+
         mPresenter = new MainPresenterImpl();
         mPresenter.init(this);
 
-        mRecyclerView = findViewById(R.id.main_recycler_view);
-        mRecyclerView.setAdapter(new MainListAdapter());
+        Fragment fragment = mFragmentManager.findFragmentById(R.id.content_main);
 
+        if (fragment == null) {
+            fragment = MainFragment.newInstance();
+
+            mFragmentManager.beginTransaction()
+                    .add(R.id.content_main, fragment)
+                    .commit();
+        }
     }
 
     @Override
@@ -46,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements IBaseView.IMainVi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_return:
-                this.onBackPressed();
+                mPresenter.doLogout(null, 0);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -60,7 +93,9 @@ public class MainActivity extends AppCompatActivity implements IBaseView.IMainVi
 
     @Override
     public void closeMain() {
-
+        Intent i = new Intent(this, NavigationActivity.class);
+        startActivity(i);
+        finish();
     }
 
     @Override
