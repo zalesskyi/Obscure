@@ -1,27 +1,22 @@
 package com.zalesskyi.android.obscure.model;
 
-import android.support.annotation.Nullable;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Event {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Event extends RealmObject {
+    @PrimaryKey
     private long mId;
+
     private String mTitle;
-    private User mOwner;
+    private Owner mOwner;
     private Place mPlace;
+
 
     private String mUrlToPhoto;
     private long mCreatedAt;
-
-    public Event(long id, String title, User owner, @Nullable String urlToPhoto, long createdAt, Place place) {
-        mId = id;
-        mTitle = title;
-        mOwner = owner;
-        mUrlToPhoto = urlToPhoto;
-        mCreatedAt = createdAt;
-        mPlace = place;
-    }
 
     public long getId() {
         return mId;
@@ -31,12 +26,36 @@ public class Event {
         return mTitle;
     }
 
-    public User getOwner() {
+    public Owner getOwner() {
         return mOwner;
     }
 
     public String getUrlToPhoto() {
         return mUrlToPhoto;
+    }
+
+    public void setId(long id) {
+        mId = id;
+    }
+
+    public void setTitle(String title) {
+        mTitle = title;
+    }
+
+    public void setOwner(Owner owner) {
+        mOwner = owner;
+    }
+
+    public void setPlace(Place place) {
+        mPlace = place;
+    }
+
+    public void setUrlToPhoto(String urlToPhoto) {
+        mUrlToPhoto = urlToPhoto;
+    }
+
+    public void setCreatedAt(long createdAt) {
+        mCreatedAt = createdAt;
     }
 
     /**

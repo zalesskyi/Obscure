@@ -1,14 +1,17 @@
 package com.zalesskyi.android.obscure.model;
 
-/**
- * Created by Алексей on 26.04.2018.
- */
 
-public class User {
+import io.realm.RealmObject;
+
+public class Owner extends RealmObject {
     private String name;
     private String url;
 
-    public User(String name, String url) {
+    public Owner() {
+
+    }
+
+    public Owner(String name, String url) {
         this.name = name;
         this.url = url;
     }

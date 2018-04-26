@@ -17,6 +17,7 @@ import com.zalesskyi.android.obscure.package_presenters.MainPresenterImpl;
 import com.zalesskyi.android.obscure.view.IBaseView;
 import com.zalesskyi.android.obscure.view.auth_operation.activities.NavigationActivity;
 import com.zalesskyi.android.obscure.view.main_operation.fragments.MainFragment;
+import com.zalesskyi.android.obscure.view.main_operation.listeners.IMainListener;
 
 public class MainActivity extends AppCompatActivity implements IBaseView.IMainView {
     private static final String TAG = "MainActivity";
@@ -42,6 +43,11 @@ public class MainActivity extends AppCompatActivity implements IBaseView.IMainVi
                 }
             };
 
+
+    private IMainListener mMainListener = callback -> {
+
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements IBaseView.IMainVi
         Fragment fragment = mFragmentManager.findFragmentById(R.id.content_main);
 
         if (fragment == null) {
-            fragment = MainFragment.newInstance();
+            fragment = MainFragment.newInstance(mMainListener);
 
             mFragmentManager.beginTransaction()
                     .add(R.id.content_main, fragment)
