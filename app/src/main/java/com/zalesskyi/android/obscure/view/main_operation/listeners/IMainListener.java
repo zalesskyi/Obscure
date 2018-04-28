@@ -4,9 +4,6 @@ import com.zalesskyi.android.obscure.model.Event;
 
 import java.util.List;
 
-/**
- * Created by Алексей on 26.04.2018.
- */
 
 public interface IMainListener {
     void getFeed(IMainListener.IDashboardCallback callback);
@@ -14,5 +11,6 @@ public interface IMainListener {
 
     interface IDashboardCallback {
         void showFeed(List<Event> events);
+        void showEmptyList();
     }
 }

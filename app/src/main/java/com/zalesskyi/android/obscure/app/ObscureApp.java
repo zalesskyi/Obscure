@@ -17,12 +17,12 @@ public class ObscureApp extends Application {
 
     private static AppComponent appComponent;
 
-    public static AppComponent getAppComponent() {
-        return appComponent;
-    }
-
     public static ObscureApp get(Context context) {
         return (ObscureApp) context.getApplicationContext();
+    }
+
+    public AppComponent getAppComponent() {
+        return appComponent;
     }
 
     @Override

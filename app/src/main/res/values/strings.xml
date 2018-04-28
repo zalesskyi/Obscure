@@ -39,5 +39,6 @@
     <string name="action_return">Return</string>
     <string name="error_network">Network is not available</string>
     <string name="navigation_activity_welcome_text">WELCOME TO OBSCURE</string>
+    <string name="empty_list_text">There is nothing here...</string>
 
 </resources>

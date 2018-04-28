@@ -41,7 +41,9 @@ public class RealmServiceImpl implements IRealmService {
         } catch (Exception e) {
             id = 0L;
         }*/
-        ((User) object).setId(1);
+        if (object instanceof User) {
+            ((User) object).setId(1);    // todo
+        }
         return Observable.just(object)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

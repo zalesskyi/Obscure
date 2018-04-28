@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity implements IBaseView.ISpla
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_splash);
-        ObscureApp.getAppComponent().inject(this);
+        ObscureApp.get(this).getAppComponent().inject(this);
         presenter.init(this);
         presenter.doCheckUserData(); // todo 1
     }

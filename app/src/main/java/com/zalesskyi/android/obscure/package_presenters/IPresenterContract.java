@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.zalesskyi.android.obscure.view.auth_operation.activities.AuthActivity;
 import com.zalesskyi.android.obscure.view.IBaseView;
+import com.zalesskyi.android.obscure.view.main_operation.listeners.IMainListener;
 
 /**
  * Created by Алексей on 07.04.2018.
@@ -30,6 +31,7 @@ public interface IPresenterContract {
 
     interface IMainPresenter<V extends IBaseView.IMainView> {
         void doLogout(String token, int type);
+        void doGetFeed(IMainListener.IDashboardCallback callback);
         void onActivityResult(int requestCode, int resultCode, Intent data);
         void init(V view);
         void dismiss();

@@ -1,15 +1,21 @@
 package com.zalesskyi.android.obscure.package_presenters;
 
+import android.app.Application;
 import android.content.Intent;
 import android.util.Log;
 
+import com.zalesskyi.android.obscure.interactors.IInteractorContract;
 import com.zalesskyi.android.obscure.model.Event;
 import com.zalesskyi.android.obscure.model.Owner;
 import com.zalesskyi.android.obscure.model.Place;
 import com.zalesskyi.android.obscure.realm.IRealmService;
 import com.zalesskyi.android.obscure.realm.RealmServiceImpl;
 import com.zalesskyi.android.obscure.realm.User;
+import com.zalesskyi.android.obscure.utils.INetworkCheck;
+import com.zalesskyi.android.obscure.utils.IValidator;
 import com.zalesskyi.android.obscure.view.IBaseView;
+import com.zalesskyi.android.obscure.view.main_operation.activities.MainActivity;
+import com.zalesskyi.android.obscure.view.main_operation.listeners.IMainListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +28,14 @@ import java.util.Random;
 public class MainPresenterImpl extends BasePresenter<IBaseView.IMainView>
         implements IPresenterContract.IMainPresenter {
 
-    /*public MainPresenterImpl(Application application, IInteractorContract interactor,
+    public MainPresenterImpl(Application application, IInteractorContract interactor,
                              IValidator validator, INetworkCheck networkCheck, IRealmService realmService) {
         this.application = application;
         this.interactor = interactor;
         this.validator = validator;
         this.networkCheck = networkCheck;
         this.realmService = realmService;
-    }*/
+    }
 
     @Override
     public void doLogout(String token, int type) {
@@ -42,6 +48,25 @@ public class MainPresenterImpl extends BasePresenter<IBaseView.IMainView>
     }
 
     @Override
+    public void doGetFeed(IMainListener.IDashboardCallback callback) {
+        realmService.getObjects(Event.class).doOnRequest(l -> view.showProgress())
+                .subscribe(next -> {
+                    if (next.size() == 0) {
+                        callback.showEmptyList();
+                    } else {
+                        ArrayList<Event> es = new ArrayList<>();
+                        for (Event e : next) {
+                            es.add(e);
+                        }
+                        callback.showFeed(es);
+                    }
+                }, err -> {
+                    Log.e(MainActivity.TAG, err.getMessage());
+                    view.showError(err.getMessage());
+                }, () -> view.hideProgress());
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
     }
@@ -49,6 +74,7 @@ public class MainPresenterImpl extends BasePresenter<IBaseView.IMainView>
     @Override
     public void init(IBaseView.IMainView view) {
         super.init(view);
+        getMoc();
     }
 
     @Override
@@ -60,26 +86,34 @@ public class MainPresenterImpl extends BasePresenter<IBaseView.IMainView>
     private void getMoc() {
         List<Event> events = new ArrayList<>();
 
-        Place place1 = new Place(application, 41.001840, 28.929834);
-        Place place2 = new Place(application, 42.958805, 62.117283);
-        Place place3 = new Place(application, 49.964020, 8.592401);
-        Place place4 = new Place(application, 53.675864, 23.806594);
-        Place place5 = new Place(application, 60.762876, 10.252082);
-        Place place6 = new Place(application, 46.740328, 110.398543);
-        Place place7 = new Place(application, 54.799057, 32.063126);
-        Place place8 = new Place(application, -19.464994, 17.697311);
-        Place place9 = new Place(application, 52.193635, 0.736614);
-        Place place10 = new Place(application, 20.221067, 77.073060);
-        Place place11 = new Place(application, 51.048673, -107.381090);
-        Place place12 = new Place(application, 34.511300, -105.174314);
-        Place place13 = new Place(application, -7.345948, -62.608199);
-        Place place14 = new Place(application, -31.499167, -65.381019);
-        Place place15 = new Place(application, -23.500195, 149.648047);
-        Place place16 = new Place(application, 37.317084, 91.637350);
-        Place place17 = new Place(application, 26.364976, 43.361036);
-        Place place18 = new Place(application, 39.634548, 21.418667);
-        Place place19 = new Place(application, 33.908921, -0.164310);
-        Place place20 = new Place(application, 38.478650, 140.427034);
+        String[] photosUrls = new String[] {
+                "https://images.pexels.com/photos/236047/pexels-photo-236047.jpeg?auto=compress&cs=tinysrgb&h=350",
+                "https://www.planwallpaper.com/static/images/2ba7dbaa96e79e4c81dd7808706d2bb7_large.jpeg",
+                "https://images.oyster.com/articles/18446-yellowstone.jpg",
+                "https://www.nature.org/cs/groups/webcontent/@web/documents/media/2016-photocontest-yosemite-w-1.jpg",
+                "http://www.nature.com/nature/journal/v546/n7658/images/546349a-i1.jpg"
+        };
+
+        Place place1 = new Place(41.001840, 28.929834);
+        Place place2 = new Place(42.958805, 62.117283);
+        Place place3 = new Place(49.964020, 8.592401);
+        Place place4 = new Place(53.675864, 23.806594);
+        Place place5 = new Place(60.762876, 10.252082);
+        Place place6 = new Place(46.740328, 110.398543);
+        Place place7 = new Place(54.799057, 32.063126);
+        Place place8 = new Place(-19.464994, 17.697311);
+        Place place9 = new Place(52.193635, 0.736614);
+        Place place10 = new Place(20.221067, 77.073060);
+        Place place11 = new Place(51.048673, -107.381090);
+        Place place12 = new Place(34.511300, -105.174314);
+        Place place13 = new Place(-7.345948, -62.608199);
+        Place place14 = new Place(-31.499167, -65.381019);
+        Place place15 = new Place(-23.500195, 149.648047);
+        Place place16 = new Place(37.317084, 91.637350);
+        Place place17 = new Place(26.364976, 43.361036);
+        Place place18 = new Place(39.634548, 21.418667);
+        Place place19 = new Place(33.908921, -0.164310);
+        Place place20 = new Place(38.478650, 140.427034);
 
         Owner user1 = new Owner("Вильгельм II",  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Bundesarchiv_Bild_146-2004-0096%2C_Kaiser_Wilhelm_II..jpg/267px-Bundesarchiv_Bild_146-2004-0096%2C_Kaiser_Wilhelm_II..jpg");
         Owner user2 = new Owner ("Джон Першинг", "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/General_John_Joseph_Pershing_head_on_shoulders.jpg/1200px-General_John_Joseph_Pershing_head_on_shoulders.jpg");
@@ -108,104 +142,124 @@ public class MainPresenterImpl extends BasePresenter<IBaseView.IMainView>
 
         events.add(event);
 
-        event.setOwner(user2);
-        event.setPlace(place2);
+        Event event1 = new Event();
+        event1.setOwner(user2);
+        event1.setPlace(place2);
 
-        events.add(event);
+        events.add(event1);
 
-        event.setOwner(user3);
-        event.setPlace(place3);
+        Event event2 = new Event();
+        event2.setOwner(user3);
+        event2.setPlace(place3);
 
-        events.add(event);
+        events.add(event2);
 
-        event.setOwner(user4);
-        event.setPlace(place4);
+        Event event3 = new Event();
+        event3.setOwner(user4);
+        event3.setPlace(place4);
 
-        events.add(event);
+        events.add(event3);
 
-        event.setOwner(user5);
-        event.setPlace(place5);
+        Event event4 = new Event();
+        event4.setOwner(user5);
+        event4.setPlace(place5);
 
-        events.add(event);
+        events.add(event4);
 
-        event.setOwner(user6);
-        event.setPlace(place6);
+        Event event5 = new Event();
+        event5.setOwner(user6);
+        event5.setPlace(place6);
 
-        events.add(event);
+        events.add(event5);
 
-        event.setOwner(user7);
-        event.setPlace(place7);
+        Event event6 = new Event();
+        event6.setOwner(user7);
+        event6.setPlace(place7);
 
-        events.add(event);
+        events.add(event6);
 
-        event.setOwner(user8);
-        event.setPlace(place8);
+        Event event7 = new Event();
+        event7.setOwner(user8);
+        event7.setPlace(place8);
 
-        events.add(event);
+        events.add(event7);
 
-        event.setOwner(user9);
-        event.setPlace(place9);
+        Event event8 = new Event();
+        event8.setOwner(user9);
+        event8.setPlace(place9);
 
-        events.add(event);
+        events.add(event8);
 
-        event.setOwner(user10);
-        event.setPlace(place10);
+        Event event9 = new Event();
+        event9.setOwner(user10);
+        event9.setPlace(place10);
 
-        events.add(event);
+        events.add(event9);
 
-        event.setOwner(user11);
-        event.setPlace(place11);
+        Event event10 = new Event();
+        event10.setOwner(user11);
+        event10.setPlace(place11);
 
-        events.add(event);
+        events.add(event10);
 
-        event.setOwner(user12);
-        event.setPlace(place12);
+        Event event11 = new Event();
+        event11.setOwner(user12);
+        event11.setPlace(place12);
 
-        events.add(event);
+        events.add(event11);
 
-        event.setOwner(user13);
-        event.setPlace(place13);
+        Event event12 = new Event();
+        event12.setOwner(user13);
+        event12.setPlace(place13);
 
-        events.add(event);
+        events.add(event12);
 
-        event.setOwner(user14);
-        event.setPlace(place14);
+        Event event13 = new Event();
+        event13.setOwner(user14);
+        event13.setPlace(place14);
 
-        events.add(event);
+        events.add(event13);
 
-        event.setOwner(user15);
-        event.setPlace(place15);
+        Event event14 = new Event();
+        event14.setOwner(user15);
+        event14.setPlace(place15);
 
-        events.add(event);
+        events.add(event14);
 
-        event.setOwner(user16);
-        event.setPlace(place16);
+        Event event15 = new Event();
+        event15.setOwner(user16);
+        event15.setPlace(place16);
 
-        events.add(event);
+        events.add(event15);
 
-        event.setOwner(user17);
-        event.setPlace(place17);
+        Event event16 = new Event();
+        event16.setOwner(user17);
+        event16.setPlace(place17);
 
-        events.add(event);
+        events.add(event16);
 
-        event.setOwner(user18);
-        event.setPlace(place18);
+        Event event17 = new Event();
+        event17.setOwner(user18);
+        event17.setPlace(place18);
 
-        events.add(event);
+        events.add(event17);
 
-        event.setOwner(user19);
-        event.setPlace(place19);
+        Event event18 = new Event();
+        event18.setOwner(user19);
+        event18.setPlace(place19);
 
-        events.add(event);
+        events.add(event18);
 
-        event.setOwner(user20);
-        event.setPlace(place20);
+        Event event19 = new Event();
+        event19.setOwner(user20);
+        event19.setPlace(place20);
 
-        events.add(event);
+        events.add(event19);
 
         Random rand = new Random();
         for (Event e : events) {
             e.setId(rand.nextInt(100000000));
+            e.setUrlToPhoto(photosUrls[rand.nextInt(5)]);
             add(e);
         }
     }

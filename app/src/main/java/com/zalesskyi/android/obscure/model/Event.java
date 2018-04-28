@@ -1,5 +1,7 @@
 package com.zalesskyi.android.obscure.model;
 
+import android.content.Context;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -58,6 +60,10 @@ public class Event extends RealmObject {
         mCreatedAt = createdAt;
     }
 
+    public Place getPlace() {
+        return mPlace;
+    }
+
     /**
      * @return строку в удобочитаемом виде,
      * основанную на кол-ве миллисекунд с 01.01.1970
@@ -71,7 +77,7 @@ public class Event extends RealmObject {
      * @return строку с названием страны
      * по указанной широте и долготе.
      */
-    public String getAddress() {
-        return mPlace.getAddress();
+    public String getAddress(Context ctx) {
+        return mPlace.getAddress(ctx);
     }
 }

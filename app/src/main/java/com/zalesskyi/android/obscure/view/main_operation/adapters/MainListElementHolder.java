@@ -48,7 +48,7 @@ public class MainListElementHolder extends RecyclerView.ViewHolder {
         Picasso.with(mContext).load(event.getUrlToPhoto()).into(mEventImage);
         Picasso.with(mContext).load(event.getOwner().getUrl()).into(mOwnerImage);
         mOwnerName.setText(event.getOwner().getName());
-        mEventLocation.setText(event.getAddress());
+        mEventLocation.setText(event.getAddress(mContext));
 
         mParent.setOnClickListener(v -> mListener.open(event));
     }

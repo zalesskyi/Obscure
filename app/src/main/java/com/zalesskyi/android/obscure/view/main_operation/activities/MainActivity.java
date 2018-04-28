@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.zalesskyi.android.obscure.R;
+import com.zalesskyi.android.obscure.app.ObscureApp;
 import com.zalesskyi.android.obscure.package_presenters.IPresenterContract;
 import com.zalesskyi.android.obscure.package_presenters.MainPresenterImpl;
 import com.zalesskyi.android.obscure.view.IBaseView;
@@ -19,13 +20,16 @@ import com.zalesskyi.android.obscure.view.auth_operation.activities.NavigationAc
 import com.zalesskyi.android.obscure.view.main_operation.fragments.MainFragment;
 import com.zalesskyi.android.obscure.view.main_operation.listeners.IMainListener;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity implements IBaseView.IMainView {
-    private static final String TAG = "MainActivity";
+    public static final String TAG = "MainOperation";
 
     private BottomNavigationView mNavigationView;
     private FragmentManager mFragmentManager;
 
-    private IPresenterContract.IMainPresenter mPresenter;
+    @Inject
+    IPresenterContract.IMainPresenter mPresenter;
 
     private BottomNavigationView.OnNavigationItemSelectedListener
             mOnItemBottomItemSelectedListener = item -> {
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements IBaseView.IMainVi
 
 
     private IMainListener mMainListener = callback -> {
-
+        mPresenter.doGetFeed(callback);
     };
 
     @Override
@@ -61,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements IBaseView.IMainVi
         mNavigationView = findViewById(R.id.navigation);
         mNavigationView.setOnNavigationItemSelectedListener(mOnItemBottomItemSelectedListener);
 
-        mPresenter = new MainPresenterImpl();
+        ObscureApp.get(this).getAppComponent().inject(this);
         mPresenter.init(this);
 
         Fragment fragment = mFragmentManager.findFragmentById(R.id.content_main);
