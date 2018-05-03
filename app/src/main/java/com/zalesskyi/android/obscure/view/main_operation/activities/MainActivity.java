@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import com.zalesskyi.android.obscure.R;
 import com.zalesskyi.android.obscure.app.ObscureApp;
 import com.zalesskyi.android.obscure.package_presenters.IPresenterContract;
-import com.zalesskyi.android.obscure.package_presenters.MainPresenterImpl;
 import com.zalesskyi.android.obscure.view.IBaseView;
 import com.zalesskyi.android.obscure.view.auth_operation.activities.NavigationActivity;
 import com.zalesskyi.android.obscure.view.main_operation.fragments.MainFragment;

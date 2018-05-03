@@ -1,6 +1,7 @@
 package com.zalesskyi.android.obscure.view.auth_operation.activities;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.zalesskyi.android.obscure.R;
 import com.zalesskyi.android.obscure.app.ObscureApp;
@@ -34,7 +35,7 @@ public class AuthActivity extends BaseActivity implements IBaseView.IAuthView {
 
     @Override
     public void showError(String err) {
-
+        Toast.makeText(this, err, Toast.LENGTH_SHORT).show();
     }
 
     @Override
