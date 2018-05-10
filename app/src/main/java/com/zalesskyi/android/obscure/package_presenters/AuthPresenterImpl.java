@@ -1,9 +1,9 @@
 package com.zalesskyi.android.obscure.package_presenters;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.zalesskyi.android.obscure.interactors.IInteractorContract;
-import com.zalesskyi.android.obscure.model.UsersList;
 import com.zalesskyi.android.obscure.realm.IRealmService;
 import com.zalesskyi.android.obscure.realm.User;
 import com.zalesskyi.android.obscure.utils.INetworkCheck;
@@ -36,20 +36,17 @@ public class AuthPresenterImpl extends BasePresenter<IBaseView.IAuthView>
 
     @Override
     public void doSignIn(String email, String password) {
+        Log.i("AuthAct", "doSignIn");
         this.interactor.toDoSignIn(email, password).doOnRequest(l -> view.showProgress())
                 .subscribe(response -> {
                     if (response != null) {
-                        if (response instanceof UsersList) {
-                            UsersList list = (UsersList) response;
-                            String msg = "";
-                            for (com.zalesskyi.android.obscure.model.User u : list.getUsers()) {
-                                msg += u.getLogin() + " ";
-                            }
-                            view.showError(msg);
-                        }
-                        view.openMain();
+                        //view.openMain();
+                        Log.i("AuthPresenter", response.getAsString());
                     }
-                }, err -> view.showError(err.getMessage()),
+                }, err -> {
+                            view.showError(err.getMessage());
+                            Log.e("AuthPresenter", err.getMessage());
+                        },
                         () -> view.hideProgress());
 
         if (!networkCheck.isOnline()) {

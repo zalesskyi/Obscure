@@ -5,7 +5,7 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_navigation">NavigationActivity</string>
 
-    <string name="base_url">https://api.github.com</string>
+    <string name="base_url">http://37.57.92.40:8084/</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">Main screen</string>
@@ -41,6 +41,6 @@
     <string name="action_return">Return</string>
     <string name="error_network">Network is not available</string>
     <string name="navigation_activity_welcome_text">WELCOME TO OBSCURE</string>
-    <string name="empty_list_text">There is nothing here...</string>
+    <string name="empty_list_text">There is nothing here…</string>
 
 </resources>

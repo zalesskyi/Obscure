@@ -1,6 +1,7 @@
 package com.zalesskyi.android.obscure.view.auth_operation.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.zalesskyi.android.obscure.R;
@@ -72,6 +73,7 @@ public class AuthActivity extends BaseActivity implements IBaseView.IAuthView {
 
         @Override
         public void getSignIn(String email, String password) {
+            Log.i("AuthAct", "getSignIn");
             presenter.doSignIn(email, password);
         }
 

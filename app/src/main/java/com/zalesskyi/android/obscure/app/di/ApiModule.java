@@ -62,7 +62,7 @@ public class ApiModule {
     public Retrofit provideRestAdapter(Application application, Gson gson, OkHttpClient okHttpClient) {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.client(okHttpClient)
-                .baseUrl(application.getString(R.string.base_url))
+                .baseUrl("http://37.57.92.40:8084/")
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson));
         return builder.build();
