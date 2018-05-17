@@ -38,6 +38,11 @@ public class MainFragment extends Fragment implements IMainListener.IDashboardCa
         public void remove(Event item) {
             Toast.makeText(getContext(), "Remove", Toast.LENGTH_SHORT).show();
         }
+
+        @Override
+        public void apply(Event item) {
+
+        }
     };
 
     public static MainFragment newInstance(IMainListener mainListener) {

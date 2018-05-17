@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Obscure</string>
+    <string name="app_name">Obscura</string>
 
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_activity_splash">SplashActivity</string>
@@ -40,7 +40,21 @@
     <string name="title_notifications">Notifications</string>
     <string name="action_return">Return</string>
     <string name="error_network">Network is not available</string>
-    <string name="navigation_activity_welcome_text">WELCOME TO OBSCURE</string>
+    <string name="navigation_activity_welcome_text">WELCOME TO OBSCURA</string>
     <string name="empty_list_text">There is nothing here…</string>
+    <string name="auth_username">Username</string>
+    <string name="sign_in_enter">ENTER</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="sign_up_in">/ sign in</string>
+    <string name="sign_up_confirm_password">Confirm password</string>
+    <string name="password_recovery_text">PASSWORD RECOVERY</string>
+    <string name="password_recovery">Don’t worry! Just fill your email and we’ll help you reset your password.</string>
+    <string name="recovery_email">Email</string>
+    <string name="recovery_back_to">Back to</string>
+    <string name="recovery_sign_in">Sign in</string>
+    <string name="recovery_submit">SUBMIT</string>
+    <string name="auth_password">Password</string>
+    <string name="sign_in_up">/ sign up</string>
 
 </resources>

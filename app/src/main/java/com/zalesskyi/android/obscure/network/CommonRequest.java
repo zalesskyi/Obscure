@@ -1,12 +1,12 @@
-package com.zalesskyi.android.obscure.interactors;
+package com.zalesskyi.android.obscure.network;
 
 /**
  * Created by Алексей on 08.05.2018.
  */
 
 public class CommonRequest {
-    private String email;
-    private String password;
+    protected String email;
+    protected String password;
 
     public String getEmail() {
         return email;

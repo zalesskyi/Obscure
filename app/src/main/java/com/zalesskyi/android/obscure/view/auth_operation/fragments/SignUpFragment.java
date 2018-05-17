@@ -7,14 +7,36 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.zalesskyi.android.obscure.R;
 import com.zalesskyi.android.obscure.view.IAuthListener;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class SignUpFragment extends Fragment {
 
     private IAuthListener listener;
+
+
+    @BindView(R.id.sign_up_in_text)
+    TextView mSignInTxt;
+
+    @BindView(R.id.sign_up_username_edit_text)
+    EditText mUsernameTxt;
+
+    @BindView(R.id.sign_up_password_edit_text)
+    EditText mPasswordTxt;
+
+    @BindView(R.id.sign_up_password_confirm_edit_text)
+    EditText mPasswordConfirmTxt;
+
+    @BindView(R.id.sign_up_enter)
+    View mEnter;
 
     public SignUpFragment() {
         // Required empty public constructor
@@ -39,6 +61,9 @@ public class SignUpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_sign_up, container, false);
+        ButterKnife.bind(this, v);
+
+        setupUI();
         return v;
     }
 
@@ -50,5 +75,17 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private void setupUI() {
+        mEnter.setOnClickListener(b -> {
+            listener.getSignUp(mUsernameTxt.getText().toString(),
+                    mPasswordTxt.getText().toString(),
+                    mPasswordConfirmTxt.getText().toString());    // todo password confirmation вместо phone
+        });
+
+        mSignInTxt.setOnClickListener(view -> {
+            listener.openSignIn();
+        });
     }
 }

@@ -12,7 +12,7 @@ public interface IInteractorContract {
 
     Observable<JsonObject> toDoSignIn(String email, String password);
 
-    Observable<JsonObject> toDoSignUp(String email, String password);
+    Observable<JsonObject> toDoSignUp(String email, String password, String passwordConfirm);
 
     Observable<JsonObject> toDoRecoverAccount(String email);
 

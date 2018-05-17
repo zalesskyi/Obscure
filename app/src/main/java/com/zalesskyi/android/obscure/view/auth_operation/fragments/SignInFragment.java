@@ -7,15 +7,29 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.zalesskyi.android.obscure.R;
 import com.zalesskyi.android.obscure.view.IAuthListener;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class SignInFragment extends Fragment {
 
-    Button mSignInButton;
+    @BindView(R.id.sign_in_username_edit_text)
+    EditText mUsernameTxt;
+
+    @BindView(R.id.sign_in_password_edit_text)
+    EditText mPasswordTxt;
+
+    @BindView(R.id.sign_in_enter)
+    View mEnter;
+
+    @BindView(R.id.sign_in_up_text)
+    TextView mSignUp;
 
     private IAuthListener listener;
     public SignInFragment() {
@@ -41,11 +55,9 @@ public class SignInFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_sign_in, container, false);
-
-        mSignInButton = v.findViewById(R.id.sign_in_btn);
-        mSignInButton.setOnClickListener(view -> {
-            listener.getSignIn("lvkclvk@gmail.com", "12345");
-        });
+        ButterKnife.setDebug(true);
+        ButterKnife.bind(this, v);
+        setupUI();
         return v;
     }
 
@@ -57,5 +69,15 @@ public class SignInFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private void setupUI() {
+        mEnter.setOnClickListener(view -> {
+            listener.getSignIn(mUsernameTxt.getText().toString(), mPasswordTxt.getText().toString());
+        });
+
+        mSignUp.setOnClickListener(view -> {
+            listener.openSignUp();
+        });
     }
 }

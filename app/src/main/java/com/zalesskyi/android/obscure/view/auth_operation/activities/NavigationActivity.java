@@ -8,26 +8,37 @@ import android.widget.Toast;
 
 import com.zalesskyi.android.obscure.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class NavigationActivity extends AppCompatActivity {
 
-    private Button mBtnSignIn;
-    private Button mBtnSignUp;
+    @BindView(R.id.btn_navigation_activity_sign_in)
+    Button mBtnSignIn;
+
+    @BindView(R.id.btn_navigation_activity_sign_up)
+    Button mBtnSignUp;
+
+    @BindView(R.id.btn_navigation_activity_skip)
+    Button mBtnSkip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+        ButterKnife.bind(this);
 
-        mBtnSignIn = (Button) findViewById(R.id.btn_navigation_activity_sign_in);
-        mBtnSignUp = (Button) findViewById(R.id.btn_navigation_activity_sign_up);
+        setupUI();
+    }
 
+    private void setupUI() {
         mBtnSignIn.setOnClickListener(view -> {
-                Intent i = new Intent(NavigationActivity.this, AuthActivity.class);
-                startActivity(i);
+            Intent i = AuthActivity.newIntent(NavigationActivity.this, AuthActivity.SCREEN_TYPE_SIGN_IN);
+            startActivity(i);
         });
         mBtnSignUp.setOnClickListener(view -> {
-                Toast.makeText(NavigationActivity.this, "mBtnSignUp pressed", Toast.LENGTH_LONG ).show();
-                // todo при нажатии sign up открывается AuthActivity?
+            Intent i = AuthActivity.newIntent(NavigationActivity.this, AuthActivity.SCREEN_TYPE_SIGN_UP);
+            startActivity(i);
         });
     }
 }

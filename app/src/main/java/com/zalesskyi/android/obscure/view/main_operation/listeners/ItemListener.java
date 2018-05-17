@@ -6,5 +6,6 @@ package com.zalesskyi.android.obscure.view.main_operation.listeners;
 
 public interface ItemListener<T> {
     void open(T item);
+    void apply(T item);
     void remove(T item);
 }

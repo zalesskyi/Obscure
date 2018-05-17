@@ -5,6 +5,8 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.zalesskyi.android.obscure.ObscureApi;
+import com.zalesskyi.android.obscure.network.CommonRequest;
+import com.zalesskyi.android.obscure.network.SignUpRequest;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,8 +14,6 @@ import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Response;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -53,8 +53,26 @@ public class AuthInteractorImpl extends BaseInteractor implements IInteractorCon
     }
 
     @Override
-    public Observable<JsonObject> toDoSignUp(String email, String password) {
-        return null;
+    public Observable<JsonObject> toDoSignUp(String email, String password, String passwordConfirm) {
+        SignUpRequest request = new SignUpRequest(email, password, passwordConfirm);
+        String json = toJson(request);
+        String b64 = encode(json);
+        MediaType mediaType = MediaType.parse("application/json");
+        RequestBody body = RequestBody.create(mediaType, "{\"data\""+b64+"}");
+        return api.signUp(body)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .unsubscribeOn(Schedulers.io())
+                .map(response -> {
+                    try {
+                        String base64 = response.body().string();
+                        String j = decode(base64);
+                        return new Gson().fromJson(j, JsonObject.class);
+                    } catch (IOException exc) {
+                        exc.printStackTrace();
+                    }
+                    return null;
+                });
     }
 
     @Override

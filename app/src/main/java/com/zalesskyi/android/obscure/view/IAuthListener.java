@@ -14,7 +14,7 @@ public interface IAuthListener {
 
     void getSignIn(String email, String password);
 
-    void getSignUp(String email, String phone, String password);
+    void getSignUp(String email, String password, String passwordConfirm);
 
     void getRecoverAccount(String email);
 

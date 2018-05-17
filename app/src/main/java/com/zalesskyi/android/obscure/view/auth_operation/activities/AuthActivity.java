@@ -1,5 +1,7 @@
 package com.zalesskyi.android.obscure.view.auth_operation.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -16,19 +18,30 @@ import com.zalesskyi.android.obscure.view.auth_operation.fragments.SignUpFragmen
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
+
 public class AuthActivity extends BaseActivity implements IBaseView.IAuthView {
 
-    private static final int SCREEN_TYPE_SIGN_IN = 1;
-    private static final int SCREEN_TYPE_SIGN_UP = 2;
-    private static final int SCREEN_TYPE_RECOVER_ACCOUNT = 3;
+    private static final String SCREEN_TYPE_EXTRA = "screen_type";
+
+    public static final int SCREEN_TYPE_SIGN_IN = 1;
+    public static final int SCREEN_TYPE_SIGN_UP = 2;
+    public static final int SCREEN_TYPE_RECOVER_ACCOUNT = 3;
 
     @Inject
     IPresenterContract.IAuthPresenter presenter;
+
+    public static Intent newIntent(Context ctx, int screenType) {
+        Intent i = new Intent(ctx, AuthActivity.class);
+        i.putExtra(SCREEN_TYPE_EXTRA, screenType);
+        return i;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
+        ButterKnife.bind(this);
         ObscureApp.get(this).getAppComponent().inject(this);
         presenter.init(this);
         onAuthListener.openFirstScreen(SCREEN_TYPE_SIGN_IN);
@@ -58,17 +71,17 @@ public class AuthActivity extends BaseActivity implements IBaseView.IAuthView {
 
         @Override
         public void openSignIn() {
-            AuthActivity.this.replaceWithAnimFragment(R.id.auth_content, SignInFragment.newInstance(this), "Auth");
+            AuthActivity.this.replaceWithAnimFragment(R.id.auth_content, SignInFragment.newInstance(this));
         }
 
         @Override
         public void openSignUp() {
-            AuthActivity.this.replaceWithAnimFragment(R.id.auth_content, SignUpFragment.newInstance(this), "Auth");
+            AuthActivity.this.replaceWithAnimFragment(R.id.auth_content, SignUpFragment.newInstance(this));
         }
 
         @Override
         public void openRecoverAccount() {
-            AuthActivity.this.replaceWithAnimFragment(R.id.auth_content, RecoverFragment.newInstance(this), "Auth");
+            AuthActivity.this.replaceWithAnimFragment(R.id.auth_content, RecoverFragment.newInstance(this));
         }
 
         @Override
@@ -78,8 +91,8 @@ public class AuthActivity extends BaseActivity implements IBaseView.IAuthView {
         }
 
         @Override
-        public void getSignUp(String email, String phone, String password) {
-            presenter.doSignUp(email, phone, password);
+        public void getSignUp(String email, String password, String passwordConfirm) {
+            presenter.doSignUp(email, password, passwordConfirm);
         }
 
         @Override

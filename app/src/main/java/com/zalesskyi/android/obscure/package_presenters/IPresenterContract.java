@@ -19,7 +19,7 @@ public interface IPresenterContract {
 
         void init(V v);
         void doSignIn(String email, String password);
-        void doSignUp(String email, String phone, String password);
+        void doSignUp(String email, String password, String passwordConfirm);
         void doRecoverAccount(String email);
         void doSocialAuth(AuthActivity activity, int type);
     }

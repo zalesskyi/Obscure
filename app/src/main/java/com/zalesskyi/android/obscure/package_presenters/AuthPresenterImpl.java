@@ -63,8 +63,15 @@ public class AuthPresenterImpl extends BasePresenter<IBaseView.IAuthView>
     }
 
     @Override
-    public void doSignUp(String email, String phone, String password) {
-
+    public void doSignUp(String email, String password, String passwordConfirmation) {
+        interactor.toDoSignUp(email, password, passwordConfirmation)
+                .doOnRequest(l -> view.showProgress())
+                .subscribe(response -> {
+                    if (response != null) {
+                        Log.i("AuthPresenter", response.getAsString());
+                    }
+                }, err -> view.showError(err.getMessage()),
+                        () -> view.hideProgress());
     }
 
     @Override

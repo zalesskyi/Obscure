@@ -8,7 +8,6 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 import retrofit2.http.Body;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -20,6 +19,9 @@ public interface ObscureApi {
     //@FormUrlEncoded
     @POST("/sign_in")
     Observable<Response<ResponseBody>> signIn(@Header("Content-Type") String value, @Body RequestBody request);
+
+    @POST("/sign_up")
+    Observable<Response<ResponseBody>> signUp(@Body RequestBody request);
 
     @POST("/")
     Observable<Response<ResponseBody>> commonRequest(@Header("Content-Type") String contentType,
