@@ -8,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.zalesskyi.android.obscure.R;
 import com.zalesskyi.android.obscure.view.IAuthListener;
+import com.zalesskyi.android.obscure.view.auth_operation.activities.AuthActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,14 +33,17 @@ public class SignInFragment extends Fragment {
     @BindView(R.id.sign_in_up_text)
     TextView mSignUp;
 
-    private IAuthListener listener;
+    @BindView(R.id.sign_in_fb)
+    ImageButton mSignInFb;
+
+    private IAuthListener mListener;
     public SignInFragment() {
         // Required empty public constructor
     }
 
     @SuppressLint("ValidFragment")
     public SignInFragment(IAuthListener listener){
-        this.listener = listener;
+        this.mListener = listener;
     }
 
     public static SignInFragment newInstance(IAuthListener listener) {
@@ -73,11 +78,15 @@ public class SignInFragment extends Fragment {
 
     private void setupUI() {
         mEnter.setOnClickListener(view -> {
-            listener.getSignIn(mUsernameTxt.getText().toString(), mPasswordTxt.getText().toString());
+            mListener.getSignIn(mUsernameTxt.getText().toString(), mPasswordTxt.getText().toString());
         });
 
         mSignUp.setOnClickListener(view -> {
-            listener.openSignUp();
+            mListener.openSignUp();
+        });
+
+        mSignInFb.setOnClickListener(view -> {
+            mListener.getSocialAuth(AuthActivity.SOCIAL_AUTH_TYPE_FACEBOOK);
         });
     }
 }

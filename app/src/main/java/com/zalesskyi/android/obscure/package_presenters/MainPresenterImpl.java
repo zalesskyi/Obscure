@@ -67,8 +67,14 @@ public class MainPresenterImpl extends BasePresenter<IBaseView.IMainView>
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+    public void doGetUsers() {
+         interactor.getUsersList(20, 0).doOnRequest(l -> view.showProgress())
+                 .subscribe(next -> {
+                     if (next != null) {
+                         Log.i("MainPresenter", next.getAsString());
+                         view.showError(next.getAsString());
+                     }
+                 }, err -> view.showError(err.getMessage()), () -> Log.i("MainPresenter", "onCompleted"));
     }
 
     @Override
@@ -82,6 +88,7 @@ public class MainPresenterImpl extends BasePresenter<IBaseView.IMainView>
         super.dismiss();
     }
 
+    //-------------------------------------------------------------------------------------------------------
 
     private void getMoc() {
         List<Event> events = new ArrayList<>();

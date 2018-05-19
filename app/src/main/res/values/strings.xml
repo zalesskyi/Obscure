@@ -7,6 +7,9 @@
 
     <string name="base_url">http://37.57.92.40:8084/</string>
 
+    <string name="facebook_app_id">1423643837735668</string>
+    <string name="fb_login_protocol_scheme">fb1423643837735668</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">Main screen</string>
 
@@ -32,8 +35,6 @@
     <string name="action_login_social">login social</string>
     <string name="facebook_scope_profile">public_profile</string>
     <string name="facebook_scope_user_friends">user_friends</string>
-    <string name="facebook_app_id">2041631762786916</string>
-    <string name="fb_login_protocol_scheme">fb2041631762786916</string>
     <string name="error_text_facebook_error">Error login</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -56,5 +57,7 @@
     <string name="recovery_submit">SUBMIT</string>
     <string name="auth_password">Password</string>
     <string name="sign_in_up">/ sign up</string>
+    <string name="pin_chat">Закрепить</string>
+    <string name="delete_chat">Удалить</string>
 
 </resources>

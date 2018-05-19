@@ -22,6 +22,7 @@ public interface IPresenterContract {
         void doSignUp(String email, String password, String passwordConfirm);
         void doRecoverAccount(String email);
         void doSocialAuth(AuthActivity activity, int type);
+        void onActivityResult(int requestCode, int resultCode, Intent data);
     }
 
     interface ISplashPresenter<V extends IBaseView.ISplashView> {
@@ -32,7 +33,7 @@ public interface IPresenterContract {
     interface IMainPresenter<V extends IBaseView.IMainView> {
         void doLogout(String token, int type);
         void doGetFeed(IMainListener.IDashboardCallback callback);
-        void onActivityResult(int requestCode, int resultCode, Intent data);
+        void doGetUsers();
         void init(V view);
         void dismiss();
     }

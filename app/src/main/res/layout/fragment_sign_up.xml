@@ -114,7 +114,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/sign_up_fb"
-        android:src="@drawable/ic_sign_in_enter"
+        android:src="@drawable/ic_icon_facebook"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -125,7 +125,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/sign_up_gplus"
         android:layout_marginEnd="25dp"
-        android:src="@drawable/ic_sign_in_enter"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:src="@drawable/ic_icon_google"
         app:layout_constraintBottom_toBottomOf="@id/sign_up_fb"
         app:layout_constraintLeft_toRightOf="@id/sign_up_fb"/>
 
@@ -134,7 +136,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/sign_up_twitter"
         android:layout_marginEnd="25dp"
-        android:src="@drawable/ic_sign_in_enter"
+        android:src="@drawable/ic_icon_twitter"
         app:layout_constraintBottom_toBottomOf="@id/sign_up_gplus"
         app:layout_constraintLeft_toRightOf="@id/sign_up_gplus"/>
 

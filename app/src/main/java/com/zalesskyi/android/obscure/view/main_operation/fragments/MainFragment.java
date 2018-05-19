@@ -74,7 +74,7 @@ public class MainFragment extends Fragment implements IMainListener.IDashboardCa
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mMainListener.getFeed(this);
+        //mMainListener.getFeed(this);
         return v;
     }
 

@@ -2,6 +2,7 @@ package com.zalesskyi.android.obscure.package_presenters;
 
 import android.app.Application;
 
+import com.facebook.CallbackManager;
 import com.zalesskyi.android.obscure.realm.IRealmService;
 import com.zalesskyi.android.obscure.utils.INetworkCheck;
 import com.zalesskyi.android.obscure.utils.IValidator;
@@ -19,6 +20,8 @@ abstract class BasePresenter<V extends IBaseView> {
     protected Application application;
     protected IInteractorContract interactor;
     protected IRealmService realmService;
+
+    protected CallbackManager mCallbackManager;
 
     public void init(V v) {
         view = v;

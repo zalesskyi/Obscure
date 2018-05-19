@@ -2,12 +2,19 @@ package com.zalesskyi.android.obscure.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.util.Base64;
+import android.util.Log;
 
 import com.zalesskyi.android.obscure.app.di.ApiModule;
 import com.zalesskyi.android.obscure.app.di.AppComponent;
 import com.zalesskyi.android.obscure.app.di.AppModule;
 import com.zalesskyi.android.obscure.app.di.DaggerAppComponent;
 import com.zalesskyi.android.obscure.app.di.PresenterModule;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;

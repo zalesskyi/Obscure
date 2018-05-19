@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.zalesskyi.android.obscure.R;
 import com.zalesskyi.android.obscure.app.ObscureApp;
 import com.zalesskyi.android.obscure.package_presenters.IPresenterContract;
@@ -15,6 +19,7 @@ import com.zalesskyi.android.obscure.view.IBaseView;
 import com.zalesskyi.android.obscure.view.auth_operation.fragments.RecoverFragment;
 import com.zalesskyi.android.obscure.view.auth_operation.fragments.SignInFragment;
 import com.zalesskyi.android.obscure.view.auth_operation.fragments.SignUpFragment;
+import com.zalesskyi.android.obscure.view.main_operation.activities.MainActivity;
 
 import javax.inject.Inject;
 
@@ -27,6 +32,10 @@ public class AuthActivity extends BaseActivity implements IBaseView.IAuthView {
     public static final int SCREEN_TYPE_SIGN_IN = 1;
     public static final int SCREEN_TYPE_SIGN_UP = 2;
     public static final int SCREEN_TYPE_RECOVER_ACCOUNT = 3;
+
+    public static final int SOCIAL_AUTH_TYPE_FACEBOOK = 1;
+    public static final int SOCIAL_AUTH_TYPE_GOOGLE_PLUS = 2;
+    public static final int SOCIAL_AUTH_TYPE_TWITTER = 3;
 
     @Inject
     IPresenterContract.IAuthPresenter presenter;
@@ -48,6 +57,12 @@ public class AuthActivity extends BaseActivity implements IBaseView.IAuthView {
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        presenter.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     public void showError(String err) {
         Toast.makeText(this, err, Toast.LENGTH_SHORT).show();
     }
@@ -64,7 +79,8 @@ public class AuthActivity extends BaseActivity implements IBaseView.IAuthView {
 
     @Override
     public void openMain() {
-
+        startActivity(MainActivity.newIntent(this));
+        finish();
     }
 
     private IAuthListener onAuthListener = new IAuthListener() {

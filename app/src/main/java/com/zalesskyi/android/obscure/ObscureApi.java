@@ -18,7 +18,7 @@ public interface ObscureApi {
 
     //@FormUrlEncoded
     @POST("/sign_in")
-    Observable<Response<ResponseBody>> signIn(@Header("Content-Type") String value, @Body RequestBody request);
+    Observable<Response<ResponseBody>> signIn(@Header("Content-Type") String contentType, @Body RequestBody request);
 
     @POST("/sign_up")
     Observable<Response<ResponseBody>> signUp(@Body RequestBody request);
@@ -41,4 +41,33 @@ public interface ObscureApi {
     Observable<ResponseBody> uploadArrayFiles(@Header("action") String action,
                                               @Header("authkey") String token,
                                               @Part List<MultipartBody.Part> file);
+
+    @Multipart
+    @POST("/users/list")
+    Observable<Response<ResponseBody>> getUsersList(@Body RequestBody body); // todo 17.05
+
+    @Multipart
+    @POST("/logout")
+    Observable<Response<ResponseBody>> logOut(@Body RequestBody body); // todo 17.05
+
+
+    @Multipart
+    @POST("/password/email")
+    Observable<Response<ResponseBody>> resetPassword(@Body RequestBody body); // todo 17.05
+
+    @Multipart
+    @POST("/countries")
+    Observable<Response<ResponseBody>> getCountries(@Body RequestBody body); // todo 17.05
+
+    @Multipart
+    @POST("/states/{id}")
+    Observable<Response<ResponseBody>> getRegions(@Body RequestBody body); // todo 17.05
+
+    @Multipart
+    @POST("/cities")
+    Observable<Response<ResponseBody>> getCities(@Body RequestBody body); // todo 17.05
+
+    @Multipart
+    @POST("/user/update")
+    Observable<Response<ResponseBody>> editProfile(@Body RequestBody body); // todo 17.05
 }

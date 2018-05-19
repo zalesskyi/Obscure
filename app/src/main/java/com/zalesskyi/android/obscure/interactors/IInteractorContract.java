@@ -1,6 +1,10 @@
 package com.zalesskyi.android.obscure.interactors;
 
 
+import android.app.Activity;
+import android.support.annotation.Nullable;
+
+import com.facebook.AccessToken;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -13,6 +17,21 @@ public interface IInteractorContract {
     Observable<JsonObject> toDoSignIn(String email, String password);
 
     Observable<JsonObject> toDoSignUp(String email, String password, String passwordConfirm);
+
+    Observable<JsonObject> getUsersList(Integer limit, Integer offset);
+
+    Observable<JsonObject> getCountriesList(Integer limit, Integer offset);
+
+    Observable<JsonObject> getRegionsList(Integer countryId, Integer limit, Integer offset);
+
+    Observable<JsonObject> getCitiesList(Integer regionId, Integer limit, Integer offset);
+
+    Observable<JsonObject> toDoEditProfile(@Nullable Integer countryId,
+                                           @Nullable Integer regionId,
+                                           @Nullable Integer cityId,
+                                           String name,
+                                           String lastName,
+                                           Integer imageId);
 
     Observable<JsonObject> toDoRecoverAccount(String email);
 

@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="actionBarStyle">@style/ObscuraActionBar</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -13,4 +15,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
+    <style name="ObscuraActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/action_bar_background</item>
+        <item name="background">@drawable/action_bar_background</item>
+    </style>
 </resources>

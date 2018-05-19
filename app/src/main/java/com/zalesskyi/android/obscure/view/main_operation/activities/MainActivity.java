@@ -1,5 +1,6 @@
 package com.zalesskyi.android.obscure.view.main_operation.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements IBaseView.IMainVi
 
     @Inject
     IPresenterContract.IMainPresenter mPresenter;
+
+    public static Intent newIntent(Context ctx) {
+        return new Intent(ctx, MainActivity.class);
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener
             mOnItemBottomItemSelectedListener = item -> {
@@ -67,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements IBaseView.IMainVi
         ObscureApp.get(this).getAppComponent().inject(this);
         mPresenter.init(this);
 
-        Fragment fragment = mFragmentManager.findFragmentById(R.id.content_main);
+        /*Fragment fragment = mFragmentManager.findFragmentById(R.id.content_main);
 
         if (fragment == null) {
             fragment = MainFragment.newInstance(mMainListener);
@@ -75,7 +80,9 @@ public class MainActivity extends AppCompatActivity implements IBaseView.IMainVi
             mFragmentManager.beginTransaction()
                     .add(R.id.content_main, fragment)
                     .commit();
-        }
+        }*/
+
+        mPresenter.doGetUsers();
     }
 
     @Override

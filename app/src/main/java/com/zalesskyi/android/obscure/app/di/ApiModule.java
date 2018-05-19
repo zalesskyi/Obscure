@@ -7,8 +7,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.zalesskyi.android.obscure.ObscureApi;
-import com.zalesskyi.android.obscure.R;
-import com.zalesskyi.android.obscure.interactors.AuthInteractorImpl;
+import com.zalesskyi.android.obscure.interactors.InteractorImpl;
 import com.zalesskyi.android.obscure.interactors.IInteractorContract;
 
 import java.util.concurrent.TimeUnit;
@@ -27,7 +26,7 @@ public class ApiModule {
     /*@Provides
     @AppScope
     IInteractorContract providesInteractor(){
-        return new AuthInteractorImpl();
+        return new InteractorImpl();
     }*/
 
     @Provides
@@ -77,6 +76,6 @@ public class ApiModule {
     @Provides
     @AppScope
     public IInteractorContract provideInteractor(ObscureApi apiService) {
-        return new AuthInteractorImpl(apiService);
+        return new InteractorImpl(apiService);
     }
 }

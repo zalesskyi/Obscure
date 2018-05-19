@@ -108,32 +108,36 @@
             android:src="@drawable/ic_sign_in_enter"/>
     </LinearLayout>
 
-    <ImageView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sign_up_fb"
-        android:src="@drawable/ic_sign_in_enter"
+        android:id="@+id/sign_in_fb"
+        android:src="@drawable/ic_icon_facebook"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="20dp"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
 
-    <ImageView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sign_up_gplus"
-        android:layout_marginEnd="25dp"
-        android:src="@drawable/ic_sign_in_enter"
-        app:layout_constraintBottom_toBottomOf="@id/sign_up_fb"
-        app:layout_constraintLeft_toRightOf="@id/sign_up_fb"/>
+        android:id="@+id/sign_in_gplus"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:src="@drawable/ic_icon_google"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@id/sign_in_fb"
+        app:layout_constraintLeft_toRightOf="@id/sign_in_fb"/>
 
-    <ImageView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sign_up_twitter"
+        android:id="@+id/sign_in_twitter"
         android:layout_marginEnd="25dp"
-        android:src="@drawable/ic_sign_in_enter"
-        app:layout_constraintBottom_toBottomOf="@id/sign_up_gplus"
-        app:layout_constraintLeft_toRightOf="@id/sign_up_gplus"/>
+        android:src="@drawable/ic_icon_twitter"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@id/sign_in_gplus"
+        app:layout_constraintLeft_toRightOf="@id/sign_in_gplus"/>
 
 </android.support.constraint.ConstraintLayout>
