@@ -1,7 +1,6 @@
 package com.zalesskyi.android.obscure.package_presenters;
 
 import android.app.Application;
-import android.content.Intent;
 import android.util.Log;
 
 import com.zalesskyi.android.obscure.interactors.IInteractorContract;
@@ -9,7 +8,6 @@ import com.zalesskyi.android.obscure.model.Event;
 import com.zalesskyi.android.obscure.model.Owner;
 import com.zalesskyi.android.obscure.model.Place;
 import com.zalesskyi.android.obscure.realm.IRealmService;
-import com.zalesskyi.android.obscure.realm.RealmServiceImpl;
 import com.zalesskyi.android.obscure.realm.User;
 import com.zalesskyi.android.obscure.utils.INetworkCheck;
 import com.zalesskyi.android.obscure.utils.IValidator;
@@ -67,20 +65,35 @@ public class MainPresenterImpl extends BasePresenter<IBaseView.IMainView>
     }
 
     @Override
-    public void doGetUsers() {
-         interactor.getUsersList(20, 0).doOnRequest(l -> view.showProgress())
-                 .subscribe(next -> {
-                     if (next != null) {
-                         Log.i("MainPresenter", next.getAsString());
-                         view.showError(next.getAsString());
-                     }
-                 }, err -> view.showError(err.getMessage()), () -> Log.i("MainPresenter", "onCompleted"));
+    public void doGetUsers(Integer limit, Integer offset) {
+        interactor.toDoGetUsersList(limit, offset).doOnRequest(l -> view.showProgress()) // todo выполняется в том же потоке, что и начальный поток?
+                .subscribe(next -> {
+                    if (next != null) {
+                        // todo
+                        Log.i("MainPresenter", next.getAsString());
+                        view.showError(next.getAsString());
+                    }
+                }, err -> view.showError(err.getMessage()), () -> Log.i("MainPresenter", "onCompleted"));
+    }
+
+    @Override
+    public void doEditProfile(Integer countryId, Integer stateId, Integer cityId,
+                              String name, String lastName, Integer imageId) {
+        interactor.toDoEditProfile(countryId, stateId, cityId, name, lastName, imageId)
+                .subscribe(next -> {
+                    if (next != null) {
+                        // todo
+                        Log.i("MainPresenter", next.getAsString());
+                        view.showError(next.getAsString());
+                    }
+                }, err -> view.showError(err.getMessage()),
+                        () -> Log.i("MainPresenter", "onCompleted"));
     }
 
     @Override
     public void init(IBaseView.IMainView view) {
         super.init(view);
-        getMoc();
+        //getMoc();
     }
 
     @Override

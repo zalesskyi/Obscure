@@ -59,5 +59,6 @@
     <string name="sign_in_up">/ sign up</string>
     <string name="pin_chat">Закрепить</string>
     <string name="delete_chat">Удалить</string>
+    <string name="message_here_hint">Message...</string>
 
 </resources>

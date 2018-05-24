@@ -18,4 +18,8 @@ public interface IBaseView {
         void doneLogout(String token, int type);
         void closeMain();
     }
+
+    interface IDetailView extends IBaseView {
+
+    }
 }

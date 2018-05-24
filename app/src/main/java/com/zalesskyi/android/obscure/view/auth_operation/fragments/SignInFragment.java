@@ -60,7 +60,6 @@ public class SignInFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_sign_in, container, false);
-        ButterKnife.setDebug(true);
         ButterKnife.bind(this, v);
         setupUI();
         return v;

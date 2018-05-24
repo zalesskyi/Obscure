@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="240dp"
+        android:id="@+id/my_message_body"
+        android:padding="5dp"
+        android:background="@drawable/drawable_interlocutor_message"
+        android:layout_marginEnd="16dp"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:textColor="#de000000"
+        android:lineSpacingExtra="4sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/my_message_status"
+        tools:text="Gastroenteritis means inflammation of stomach as well as the gastrointestinal tract."
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="240dp"
+        android:layout_marginEnd="16dp"
+        android:id="@+id/my_pic_message"
+        android:background="@drawable/drawable_interlocutor_message"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/my_message_status"
+        tools:src="@drawable/logo_obscure"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:maxWidth="240dp"
+        android:layout_marginEnd="16dp"
+        android:id="@+id/my_audio"
+        android:orientation="horizontal"
+        android:background="@drawable/drawable_interlocutor_message"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/my_message_status">
+
+        <!--todo drawable-->
+        <ImageButton
+            android:layout_width="21dp"
+            android:layout_height="24dp"
+            android:id="@+id/interlocutor_play_audio_btn"
+            android:layout_gravity="center"
+            tools:src="@drawable/ic_attach_file"/>
+
+        <!--todo thumb color-->
+        <SeekBar
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:id="@+id/audio_duration"
+            android:layout_gravity="center"
+            tools:text="9:02"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/my_message_status"
+        android:layout_marginEnd="16dp"
+        android:paddingTop="3dp"
+        android:textSize="12sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:textColor="#ffffff"
+        android:lineSpacingExtra="4sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="Delivered"/>
+</android.support.constraint.ConstraintLayout>

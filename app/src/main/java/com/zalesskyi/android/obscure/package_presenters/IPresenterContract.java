@@ -33,8 +33,17 @@ public interface IPresenterContract {
     interface IMainPresenter<V extends IBaseView.IMainView> {
         void doLogout(String token, int type);
         void doGetFeed(IMainListener.IDashboardCallback callback);
-        void doGetUsers();
+        void doGetUsers(Integer limit, Integer offset);
+        void doEditProfile(Integer countryId, Integer stateId,
+                           Integer cityId, String name,
+                           String lastName, Integer imageId);
         void init(V view);
         void dismiss();
+    }
+
+    interface IDetailPresenter<V extends IBaseView.IDetailView> {
+        void doGetCountries(Integer limit, Integer offset);
+        void doGetStates(Integer countryId, Integer limit, Integer offset);
+        void doGetCities(Integer stateId, Integer limit, Integer offset);
     }
 }

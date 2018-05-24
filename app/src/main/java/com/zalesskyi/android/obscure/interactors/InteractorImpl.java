@@ -88,7 +88,7 @@ public class InteractorImpl extends BaseInteractor implements IInteractorContrac
     }
 
     @Override
-    public Observable<JsonObject> getUsersList(Integer limit, Integer offset) {
+    public Observable<JsonObject> toDoGetUsersList(Integer limit, Integer offset) {
         CommonRequest request = new CommonRequest();
         request.setLimit(limit);
         request.setOffset(offset);
@@ -114,7 +114,7 @@ public class InteractorImpl extends BaseInteractor implements IInteractorContrac
     }
 
     @Override
-    public Observable<JsonObject> getCountriesList(Integer limit, Integer offset) {
+    public Observable<JsonObject> toDoGetCountriesList(Integer limit, Integer offset) {
         CommonRequest request = new CommonRequest();
         request.setLimit(limit);
         request.setOffset(offset);
@@ -140,7 +140,7 @@ public class InteractorImpl extends BaseInteractor implements IInteractorContrac
     }
 
     @Override
-    public Observable<JsonObject> getRegionsList(Integer countryId, Integer limit, Integer offset) {
+    public Observable<JsonObject> toDoGetRegionsList(Integer countryId, Integer limit, Integer offset) {
         CommonRequest request = new CommonRequest();
         request.setCountry_id(countryId);
         request.setLimit(limit);
@@ -167,7 +167,7 @@ public class InteractorImpl extends BaseInteractor implements IInteractorContrac
     }
 
     @Override
-    public Observable<JsonObject> getCitiesList(Integer regionId, Integer limit, Integer offset) {
+    public Observable<JsonObject> toDoGetCitiesList(Integer regionId, Integer limit, Integer offset) {
         CommonRequest request = new CommonRequest();
         request.setLimit(limit);
         request.setOffset(offset);
@@ -257,7 +257,7 @@ public class InteractorImpl extends BaseInteractor implements IInteractorContrac
     }
 
     @Override
-    public Observable<JsonObject> uploadFiles(String action, String authKeyOrEmail, List<MultipartBody.Part> part) {
+    public Observable<JsonObject> toDoUploadFiles(String action, String authKeyOrEmail, List<MultipartBody.Part> part) {
         Log.d("RETy", "OneInteractorImpl uploadGalleryFiles() action " + action + ", authKey " + authKeyOrEmail + " part.size() " + part.size());
         return api.uploadArrayFiles(action, authKeyOrEmail, part) //image, //, description
                 .subscribeOn(Schedulers.newThread())
@@ -281,7 +281,7 @@ public class InteractorImpl extends BaseInteractor implements IInteractorContrac
     }
 
     @Override
-    public Observable<JsonObject> uploadFile(String action, String authKeyOrEmail, MultipartBody.Part part) {
+    public Observable<JsonObject> toDoUploadFile(String action, String authKeyOrEmail, MultipartBody.Part part) {
         Log.d("RETy", "OneInteractorImpl uploadFile() action " + action + ", authKey " + authKeyOrEmail);
         return api.uploadFile(action, authKeyOrEmail, part) //image, //, description
                 .subscribeOn(Schedulers.newThread())

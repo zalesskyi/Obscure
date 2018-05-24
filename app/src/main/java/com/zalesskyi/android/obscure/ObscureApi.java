@@ -42,7 +42,6 @@ public interface ObscureApi {
                                               @Header("authkey") String token,
                                               @Part List<MultipartBody.Part> file);
 
-    @Multipart
     @POST("/users/list")
     Observable<Response<ResponseBody>> getUsersList(@Body RequestBody body); // todo 17.05
 

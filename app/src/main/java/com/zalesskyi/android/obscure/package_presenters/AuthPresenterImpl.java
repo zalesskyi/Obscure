@@ -81,6 +81,7 @@ public class AuthPresenterImpl extends BasePresenter<IBaseView.IAuthView>
                 .subscribe(response -> {
                     if (response != null) {
                         Log.i("AuthPresenter", response.getAsString());
+                        view.showError(response.getAsString());
                     }
                 }, err -> view.showError(err.getMessage()),
                         () -> view.hideProgress());

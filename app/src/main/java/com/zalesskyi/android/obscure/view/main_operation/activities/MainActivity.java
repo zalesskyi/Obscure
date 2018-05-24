@@ -82,7 +82,8 @@ public class MainActivity extends AppCompatActivity implements IBaseView.IMainVi
                     .commit();
         }*/
 
-        mPresenter.doGetUsers();
+        //mPresenter.doGetUsers(0, 20);
+        mPresenter.doEditProfile(1, 1, 1, "Petro", "Poroh", 1);
     }
 
     @Override

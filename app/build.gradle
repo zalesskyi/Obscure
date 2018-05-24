@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'realm-android'
-apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 27
@@ -28,7 +27,7 @@ android {
     }
 }
 
-def BUTTER_KNIFE_VERSION="8.5.1" //current version of butterknife
+def BUTTER_KNIFE_VERSION = "8.5.1" //current version of butterknife
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -49,7 +48,7 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0'
     implementation 'com.squareup.picasso:picasso:2.3.2'
 
-    compile "com.jakewharton:butterknife:$BUTTER_KNIFE_VERSION"
+    implementation "com.jakewharton:butterknife:$BUTTER_KNIFE_VERSION"
     annotationProcessor "com.jakewharton:butterknife-compiler:$BUTTER_KNIFE_VERSION"
 
     final RETROFIT_VERSION = '2.3.0'

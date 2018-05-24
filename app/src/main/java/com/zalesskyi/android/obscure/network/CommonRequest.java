@@ -33,7 +33,6 @@ public class CommonRequest {
         this.password = password;
     }
 
-
     public String getPassword_confirmation() {
         return password_confirmation;
     }

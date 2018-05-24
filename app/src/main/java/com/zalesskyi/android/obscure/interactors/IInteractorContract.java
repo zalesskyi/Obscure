@@ -18,13 +18,13 @@ public interface IInteractorContract {
 
     Observable<JsonObject> toDoSignUp(String email, String password, String passwordConfirm);
 
-    Observable<JsonObject> getUsersList(Integer limit, Integer offset);
+    Observable<JsonObject> toDoGetUsersList(Integer limit, Integer offset);
 
-    Observable<JsonObject> getCountriesList(Integer limit, Integer offset);
+    Observable<JsonObject> toDoGetCountriesList(Integer limit, Integer offset);
 
-    Observable<JsonObject> getRegionsList(Integer countryId, Integer limit, Integer offset);
+    Observable<JsonObject> toDoGetRegionsList(Integer countryId, Integer limit, Integer offset);
 
-    Observable<JsonObject> getCitiesList(Integer regionId, Integer limit, Integer offset);
+    Observable<JsonObject> toDoGetCitiesList(Integer regionId, Integer limit, Integer offset);
 
     Observable<JsonObject> toDoEditProfile(@Nullable Integer countryId,
                                            @Nullable Integer regionId,
@@ -37,7 +37,7 @@ public interface IInteractorContract {
 
     Observable<JsonObject> toDoSocialAuth(String token);
 
-    Observable<JsonObject> uploadFiles(String action, String authKeyOtEmail, List<MultipartBody.Part> files);
+    Observable<JsonObject> toDoUploadFiles(String action, String authKeyOtEmail, List<MultipartBody.Part> files);
 
-    Observable<JsonObject> uploadFile(String action, String authKeyOrEmail, MultipartBody.Part part);
+    Observable<JsonObject> toDoUploadFile(String action, String authKeyOrEmail, MultipartBody.Part part);
 }
