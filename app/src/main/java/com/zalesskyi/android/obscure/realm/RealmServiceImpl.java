@@ -42,7 +42,7 @@ public class RealmServiceImpl implements IRealmService {
             id = 0L;
         }*/
         if (object instanceof User) {
-            ((User) object).setId(1);    // todo
+            ((User) object).setId(1);    // todo не понятно
         }
         return Observable.just(object)
                 .subscribeOn(Schedulers.newThread())
@@ -66,7 +66,7 @@ public class RealmServiceImpl implements IRealmService {
                 .flatMap(t -> Observable.just(t)
                         .doOnSubscribe(mRealm::beginTransaction)
                         .doOnUnsubscribe(mRealm::commitTransaction)
-                        .map(type -> mRealm.where(clazz).findAll()));   // todo clazz == type
+                        .map(type -> mRealm.where(clazz).findAll()));
     }
 
     @Override

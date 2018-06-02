@@ -23,12 +23,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class ApiModule {
 
-    /*@Provides
-    @AppScope
-    IInteractorContract providesInteractor(){
-        return new InteractorImpl();
-    }*/
-
     @Provides
     @AppScope
     public OkHttpClient provideOkHttpClient() {
@@ -61,7 +55,7 @@ public class ApiModule {
     public Retrofit provideRestAdapter(Application application, Gson gson, OkHttpClient okHttpClient) {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.client(okHttpClient)
-                .baseUrl("http://37.57.92.40:8084/")
+                .baseUrl("http://obskuralight.evg.fprom.net/")
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson));
         return builder.build();

@@ -31,7 +31,7 @@ public interface ObscureApi {
                                                      @Header("time-zone") String timezone,
                                                      @Body RequestBody body);
 
-    @Multipart
+    @POST("/image/upload")
     Observable<ResponseBody> uploadFile(@Header("action") String action,
                                         @Header("authkey") String token,
                                         @Part MultipartBody.Part avatar);
@@ -43,30 +43,30 @@ public interface ObscureApi {
                                               @Part List<MultipartBody.Part> file);
 
     @POST("/users/list")
-    Observable<Response<ResponseBody>> getUsersList(@Body RequestBody body); // todo 17.05
+    Observable<Response<ResponseBody>> getUsersList(@Body RequestBody body);
 
     @Multipart
     @POST("/logout")
-    Observable<Response<ResponseBody>> logOut(@Body RequestBody body); // todo 17.05
+    Observable<Response<ResponseBody>> logOut(@Body RequestBody body);
 
 
     @Multipart
     @POST("/password/email")
-    Observable<Response<ResponseBody>> resetPassword(@Body RequestBody body); // todo 17.05
+    Observable<Response<ResponseBody>> resetPassword(@Body RequestBody body);
 
     @Multipart
     @POST("/countries")
-    Observable<Response<ResponseBody>> getCountries(@Body RequestBody body); // todo 17.05
+    Observable<Response<ResponseBody>> getCountries(@Body RequestBody body);
 
     @Multipart
     @POST("/states/{id}")
-    Observable<Response<ResponseBody>> getRegions(@Body RequestBody body); // todo 17.05
+    Observable<Response<ResponseBody>> getRegions(@Body RequestBody body);
 
     @Multipart
     @POST("/cities")
-    Observable<Response<ResponseBody>> getCities(@Body RequestBody body); // todo 17.05
+    Observable<Response<ResponseBody>> getCities(@Body RequestBody body);
 
     @Multipart
     @POST("/user/update")
-    Observable<Response<ResponseBody>> editProfile(@Body RequestBody body); // todo 17.05
+    Observable<Response<ResponseBody>> editProfile(@Body RequestBody body);
 }

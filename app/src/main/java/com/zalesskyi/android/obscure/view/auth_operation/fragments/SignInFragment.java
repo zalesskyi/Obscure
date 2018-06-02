@@ -36,6 +36,9 @@ public class SignInFragment extends Fragment {
     @BindView(R.id.sign_in_fb)
     ImageButton mSignInFb;
 
+    @BindView(R.id.sign_in_gplus)
+    ImageButton mSignInGPlus;
+
     private IAuthListener mListener;
     public SignInFragment() {
         // Required empty public constructor
@@ -86,6 +89,10 @@ public class SignInFragment extends Fragment {
 
         mSignInFb.setOnClickListener(view -> {
             mListener.getSocialAuth(AuthActivity.SOCIAL_AUTH_TYPE_FACEBOOK);
+        });
+
+        mSignInGPlus.setOnClickListener(view -> {
+            mListener.getSocialAuth(AuthActivity.SOCIAL_AUTH_TYPE_GOOGLE_PLUS);
         });
     }
 }

@@ -45,5 +45,6 @@ public interface IPresenterContract {
         void doGetCountries(Integer limit, Integer offset);
         void doGetStates(Integer countryId, Integer limit, Integer offset);
         void doGetCities(Integer stateId, Integer limit, Integer offset);
+        //void doUploadFile()
     }
 }

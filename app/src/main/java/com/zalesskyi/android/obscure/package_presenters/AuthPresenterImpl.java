@@ -111,7 +111,7 @@ public class AuthPresenterImpl extends BasePresenter<IBaseView.IAuthView>
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (mCallbackManager != null) {
+        if (mCallbackManager != null) {     // Для Facebook авторизации
             mCallbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }

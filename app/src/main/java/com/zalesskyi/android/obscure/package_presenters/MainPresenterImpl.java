@@ -103,7 +103,7 @@ public class MainPresenterImpl extends BasePresenter<IBaseView.IMainView>
 
     //-------------------------------------------------------------------------------------------------------
 
-    private void getMoc() {
+    private void getMock() {
         List<Event> events = new ArrayList<>();
 
         String[] photosUrls = new String[] {

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
+    android:layout_marginBottom="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -21,8 +22,8 @@
         android:layout_height="wrap_content"
         android:maxWidth="240dp"
         android:id="@+id/interlocutor_message_body"
-        android:padding="5dp"
         android:background="@drawable/drawable_interlocutor_message"
+        android:padding="5dp"
         android:layout_marginStart="16dp"
         android:textSize="16sp"
         android:fontFamily="sans-serif"
@@ -34,12 +35,12 @@
         tools:text="Gastroenteritis means inflammation of stomach as well as the gastrointestinal tract."
         />
 
-    <ImageView
+    <com.zalesskyi.android.obscure.view.RoundCornerImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/interlocutor_pic_message"
         android:maxWidth="240dp"
         android:layout_marginStart="16dp"
-        android:id="@+id/interlocutor_pic_message"
         android:visibility="gone"
         android:background="@drawable/drawable_interlocutor_message"
         app:layout_constraintTop_toTopOf="parent"

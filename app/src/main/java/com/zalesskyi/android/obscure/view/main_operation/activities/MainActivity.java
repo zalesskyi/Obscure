@@ -1,7 +1,11 @@
 package com.zalesskyi.android.obscure.view.main_operation.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.ImageFormat;
+import android.media.Image;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,17 +16,24 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.mvc.imagepicker.ImagePicker;
 import com.zalesskyi.android.obscure.R;
 import com.zalesskyi.android.obscure.app.ObscureApp;
 import com.zalesskyi.android.obscure.package_presenters.IPresenterContract;
+import com.zalesskyi.android.obscure.view.BaseActivity;
 import com.zalesskyi.android.obscure.view.IBaseView;
 import com.zalesskyi.android.obscure.view.auth_operation.activities.NavigationActivity;
 import com.zalesskyi.android.obscure.view.main_operation.fragments.MainFragment;
 import com.zalesskyi.android.obscure.view.main_operation.listeners.IMainListener;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity implements IBaseView.IMainView {
+import static android.graphics.Bitmap.CompressFormat.JPEG;
+
+public class MainActivity extends BaseActivity implements IBaseView.IMainView {
     public static final String TAG = "MainOperation";
 
     private BottomNavigationView mNavigationView;
@@ -52,8 +63,16 @@ public class MainActivity extends AppCompatActivity implements IBaseView.IMainVi
             };
 
 
-    private IMainListener mMainListener = callback -> {
-        mPresenter.doGetFeed(callback);
+    private IMainListener mMainListener = new IMainListener() {
+        @Override
+        public void getFeed(IDashboardCallback callback) {
+            mPresenter.doGetFeed(callback);
+        }
+
+        @Override
+        public void getImage() {
+            ImagePicker.pickImage(MainActivity.this);
+        }
     };
 
     @Override
@@ -100,6 +119,22 @@ public class MainActivity extends AppCompatActivity implements IBaseView.IMainVi
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            Bitmap bitmap = ImagePicker.getImageFromResult(this, requestCode, resultCode, data);
+            File outputDir = MainActivity.this.getCacheDir();
+            try {
+                File file = File.createTempFile("photo", ".jpeg", outputDir);
+                MainActivity.this.saveBitmapToFile(bitmap, JPEG, 75, file);
+                //mPresenter.sendFile(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
