@@ -37,6 +37,4 @@ public class DetailPresenterImpl extends BasePresenter<IBaseView.IDetailView>
                     }
                 }, err -> view.showError(err.getMessage()), () -> {});
     }
-
-
 }

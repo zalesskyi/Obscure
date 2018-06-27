@@ -28,7 +28,7 @@ public class ListChatsFragment extends Fragment implements IMainListener.IDashbo
     private ChatsListAdapter mAdapter;
     private IMainListener mMainListener;
 
-    private ItemListener<Chat> mChatItemListener = new ItemListener<Event>() {
+    /*private ItemListener<Chat> mChatItemListener = new ItemListener<Event>() {
         @Override
         public void open(Event item) {
             Toast.makeText(getContext(), "Open", Toast.LENGTH_SHORT).show();
@@ -43,8 +43,7 @@ public class ListChatsFragment extends Fragment implements IMainListener.IDashbo
         public void apply(Event item) {
 
         }
-    };
-
+    };*/
     public static MainFragment newInstance(IMainListener mainListener) {
         return new MainFragment(mainListener);
     }
@@ -67,12 +66,12 @@ public class ListChatsFragment extends Fragment implements IMainListener.IDashbo
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, parent, false);
 
-        mRecyclerView = v.findViewById(R.id.main_recycler_view);
+        /*mRecyclerView = v.findViewById(R.id.main_recycler_view);
         mEmptyListTextView = v.findViewById(R.id.empty_list_text);
 
         mAdapter = new ChatsListAdapter(getActivity(), mChatItemListener);
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));*/
 
         //mMainListener.getFeed(this);
         return v;
@@ -80,7 +79,7 @@ public class ListChatsFragment extends Fragment implements IMainListener.IDashbo
 
     @Override
     public void showFeed(List<Event> events) {
-        mAdapter.addItems(events.toArray(new Event[events.size()]));
+       // mAdapter.addItems(events.toArray(new Event[events.size()]));
     }
 
     @Override

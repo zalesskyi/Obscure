@@ -60,5 +60,10 @@
     <string name="pin_chat">Закрепить</string>
     <string name="delete_chat">Удалить</string>
     <string name="message_here_hint">Message...</string>
+    <string name="edit_profile_f_name">Your first name</string>
+    <string name="edit_profile_s_name">Your second name</string>
+    <string name="edit_profile_choose_country">Choose your country</string>
+    <string name="edit_profile_choose_region">Choose your region</string>
+    <string name="edit_profile_choose_city">Choose your city</string>
 
 </resources>

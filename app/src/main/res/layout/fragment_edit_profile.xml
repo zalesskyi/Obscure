@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/edit_profile_photo"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/ic_menu_camera"
+                android:layout_centerHorizontal="true"/>
+
+            <EditText
+                android:id="@+id/editprofile_et_name"
+                android:padding="12dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:hint="@string/edit_profile_f_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_profile_photo"/>
+
+            <EditText
+                android:id="@+id/editprofile_et_surname"
+                android:padding="12dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:hint="@string/edit_profile_s_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editprofile_et_name"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_profile_choose_country"
+        android:text="@string/edit_profile_choose_country"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/editprofile_et_surname"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_profile_choose_region"
+        android:text="@string/edit_profile_choose_region"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/edit_profile_choose_country"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_profile_choose_city"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/edit_profile_choose_region"/>
+
+</RelativeLayout>

@@ -7,6 +7,8 @@ import com.zalesskyi.android.obscure.view.auth_operation.activities.AuthActivity
 import com.zalesskyi.android.obscure.view.IBaseView;
 import com.zalesskyi.android.obscure.view.main_operation.listeners.IMainListener;
 
+import java.io.File;
+
 /**
  * Created by Алексей on 07.04.2018.
  */
@@ -37,6 +39,8 @@ public interface IPresenterContract {
         void doEditProfile(Integer countryId, Integer stateId,
                            Integer cityId, String name,
                            String lastName, Integer imageId);
+
+        void doUploadFile(String action, File file);
         void init(V view);
         void dismiss();
     }

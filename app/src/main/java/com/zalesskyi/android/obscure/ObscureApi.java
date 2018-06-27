@@ -31,6 +31,7 @@ public interface ObscureApi {
                                                      @Header("time-zone") String timezone,
                                                      @Body RequestBody body);
 
+    @Multipart
     @POST("/image/upload")
     Observable<ResponseBody> uploadFile(@Header("action") String action,
                                         @Header("authkey") String token,

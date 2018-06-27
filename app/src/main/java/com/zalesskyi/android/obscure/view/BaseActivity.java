@@ -45,7 +45,6 @@ public class BaseActivity extends AppCompatActivity {
                                     final Bitmap.CompressFormat format,
                                     final int quality,
                                     final File file) {
-
         if (file == null)
             return false;
         if (file.getParent() != null && !file.isDirectory())

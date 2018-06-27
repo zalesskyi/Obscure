@@ -1,5 +1,6 @@
 package com.zalesskyi.android.obscure.view.main_operation.activities;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -15,14 +16,17 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.mvc.imagepicker.ImagePicker;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zalesskyi.android.obscure.R;
 import com.zalesskyi.android.obscure.app.ObscureApp;
 import com.zalesskyi.android.obscure.package_presenters.IPresenterContract;
 import com.zalesskyi.android.obscure.view.BaseActivity;
 import com.zalesskyi.android.obscure.view.IBaseView;
 import com.zalesskyi.android.obscure.view.auth_operation.activities.NavigationActivity;
+import com.zalesskyi.android.obscure.view.detail_operation.activities.DetailActivity;
 import com.zalesskyi.android.obscure.view.main_operation.fragments.MainFragment;
 import com.zalesskyi.android.obscure.view.main_operation.listeners.IMainListener;
 
@@ -102,7 +106,8 @@ public class MainActivity extends BaseActivity implements IBaseView.IMainView {
         }*/
 
         //mPresenter.doGetUsers(0, 20);
-        mPresenter.doEditProfile(1, 1, 1, "Petro", "Poroh", 1);
+        //mPresenter.doEditProfile(1, 1, 1, "Petro", "Poroh", 1);
+        getPick();
     }
 
     @Override
@@ -131,7 +136,7 @@ public class MainActivity extends BaseActivity implements IBaseView.IMainView {
             try {
                 File file = File.createTempFile("photo", ".jpeg", outputDir);
                 MainActivity.this.saveBitmapToFile(bitmap, JPEG, 75, file);
-                //mPresenter.sendFile(file);
+                mPresenter.doUploadFile("/image/upload", file);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -163,5 +168,17 @@ public class MainActivity extends BaseActivity implements IBaseView.IMainView {
     @Override
     public void hideProgress() {
 
+    }
+
+    private void getPick() {
+        new RxPermissions(this)
+                .request(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(granted -> {
+                    if (granted) {
+                        ImagePicker.pickImage(this);
+                    } else {
+                        Toast.makeText(this, "Вы не дали разрешения на использования камеры", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 }

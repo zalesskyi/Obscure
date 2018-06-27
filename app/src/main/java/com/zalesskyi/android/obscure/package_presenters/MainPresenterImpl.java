@@ -15,9 +15,15 @@ import com.zalesskyi.android.obscure.view.IBaseView;
 import com.zalesskyi.android.obscure.view.main_operation.activities.MainActivity;
 import com.zalesskyi.android.obscure.view.main_operation.listeners.IMainListener;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 /**
  * Created by Алексей on 20.04.2018.
@@ -91,6 +97,17 @@ public class MainPresenterImpl extends BasePresenter<IBaseView.IMainView>
     }
 
     @Override
+    public void doUploadFile(String action, File file) {
+        MultipartBody.Part part = getMultiPartFromFile(file);
+        interactor.toDoUploadFile(action, "sdfsd@acdsd.df", part)
+                .subscribe(next -> {
+                    Log.i("UploadFile", next.getAsString());
+                }, err -> {
+                    Log.e("UploadFile", err.getMessage());
+                });
+    }
+
+    @Override
     public void init(IBaseView.IMainView view) {
         super.init(view);
         //getMoc();
@@ -101,7 +118,22 @@ public class MainPresenterImpl extends BasePresenter<IBaseView.IMainView>
         super.dismiss();
     }
 
+
+    private MultipartBody.Part getMultiPartFromFile(File file) {
+        MediaType mediaType = MediaType.parse("image/jpeg");
+        RequestBody requestBodyFile2 = RequestBody.create(mediaType, file);
+        try {
+            Log.d("RETy", "FillProfilePresenterImpl uploadFile(), requestBodyFile2.contentLength() "
+                    + requestBodyFile2.contentLength());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return MultipartBody.Part.createFormData("avatar",
+                file.getName(), requestBodyFile2);
+
+    }
     //-------------------------------------------------------------------------------------------------------
+
 
     private void getMock() {
         List<Event> events = new ArrayList<>();
