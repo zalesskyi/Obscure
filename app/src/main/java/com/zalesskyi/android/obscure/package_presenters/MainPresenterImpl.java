@@ -72,7 +72,7 @@ public class MainPresenterImpl extends BasePresenter<IBaseView.IMainView>
 
     @Override
     public void doGetUsers(Integer limit, Integer offset) {
-        interactor.toDoGetUsersList(limit, offset).doOnRequest(l -> view.showProgress()) // todo выполняется в том же потоке, что и начальный поток?
+        interactor.toDoGetUsersList(limit, offset).doOnRequest(l -> view.showProgress())
                 .subscribe(next -> {
                     if (next != null) {
                         // todo

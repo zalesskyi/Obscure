@@ -4,22 +4,14 @@ import android.app.Activity;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.zalesskyi.android.obscure.ObscureApi;
 import com.zalesskyi.android.obscure.network.CommonRequest;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
-import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;

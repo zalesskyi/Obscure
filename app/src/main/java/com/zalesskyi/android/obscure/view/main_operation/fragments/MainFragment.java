@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,17 +51,19 @@ public class MainFragment extends Fragment implements IMainListener.IDashboardCa
     }
 
     public MainFragment() {
-
+        Log.i("MainFragment", "constructor without parameters");
     }
 
     @SuppressLint("ValidFragment")
     public MainFragment(IMainListener mainListener) {
         mMainListener = mainListener;
+        Log.i("MainFragment", "constructor with parameters");
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("MainFragment", "onCreate() method");
     }
 
     @Override
@@ -74,8 +77,16 @@ public class MainFragment extends Fragment implements IMainListener.IDashboardCa
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        //mMainListener.getFeed(this);
+        if (mMainListener != null) {
+            mMainListener.getFeed(this); // todo
+        }
         return v;
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.i("MainFragment", "onDestroy() method");
+        super.onDestroy();
     }
 
     @Override

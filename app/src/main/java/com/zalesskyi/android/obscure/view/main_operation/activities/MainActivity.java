@@ -27,6 +27,7 @@ import com.zalesskyi.android.obscure.view.BaseActivity;
 import com.zalesskyi.android.obscure.view.IBaseView;
 import com.zalesskyi.android.obscure.view.auth_operation.activities.NavigationActivity;
 import com.zalesskyi.android.obscure.view.detail_operation.activities.DetailActivity;
+import com.zalesskyi.android.obscure.view.main_operation.fragments.EditProfileFragment;
 import com.zalesskyi.android.obscure.view.main_operation.fragments.MainFragment;
 import com.zalesskyi.android.obscure.view.main_operation.listeners.IMainListener;
 
@@ -77,6 +78,21 @@ public class MainActivity extends BaseActivity implements IBaseView.IMainView {
         public void getImage() {
             ImagePicker.pickImage(MainActivity.this);
         }
+
+        @Override
+        public void chooseCountry() {
+            DetailActivity.newIntent(MainActivity.this, DetailActivity.SCREEN_TYPE_LOCATION_LIST);
+        }
+
+        @Override
+        public void chooseRegion() {
+
+        }
+
+        @Override
+        public void chooseCity() {
+
+        }
     };
 
     @Override
@@ -95,19 +111,12 @@ public class MainActivity extends BaseActivity implements IBaseView.IMainView {
         ObscureApp.get(this).getAppComponent().inject(this);
         mPresenter.init(this);
 
-        /*Fragment fragment = mFragmentManager.findFragmentById(R.id.content_main);
+        Fragment fragment = EditProfileFragment.newInstance(mMainListener);
 
-        if (fragment == null) {
-            fragment = MainFragment.newInstance(mMainListener);
-
-            mFragmentManager.beginTransaction()
-                    .add(R.id.content_main, fragment)
-                    .commit();
-        }*/
+        replaceWithAnimFragment(R.id.content_main, fragment);
 
         //mPresenter.doGetUsers(0, 20);
-        //mPresenter.doEditProfile(1, 1, 1, "Petro", "Poroh", 1);
-        getPick();
+        //getPick();
     }
 
     @Override
@@ -170,7 +179,7 @@ public class MainActivity extends BaseActivity implements IBaseView.IMainView {
 
     }
 
-    private void getPick() {
+    /*private void getPick() {
         new RxPermissions(this)
                 .request(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(granted -> {
@@ -180,5 +189,5 @@ public class MainActivity extends BaseActivity implements IBaseView.IMainView {
                         Toast.makeText(this, "Вы не дали разрешения на использования камеры", Toast.LENGTH_LONG).show();
                     }
                 });
-    }
+    }*/
 }

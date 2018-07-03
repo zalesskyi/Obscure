@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.zalesskyi.android.obscure.view.auth_operation.activities.AuthActivity;
 import com.zalesskyi.android.obscure.view.IBaseView;
+import com.zalesskyi.android.obscure.view.detail_operation.listeners.IDetailListener;
 import com.zalesskyi.android.obscure.view.main_operation.listeners.IMainListener;
 
 import java.io.File;
@@ -46,9 +47,11 @@ public interface IPresenterContract {
     }
 
     interface IDetailPresenter<V extends IBaseView.IDetailView> {
-        void doGetCountries(Integer limit, Integer offset);
-        void doGetStates(Integer countryId, Integer limit, Integer offset);
-        void doGetCities(Integer stateId, Integer limit, Integer offset);
+        void doGetCountries(Integer limit, Integer offset, IDetailListener.LocationListCallback callback);
+        void doGetStates(Integer countryId, Integer limit, Integer offset, IDetailListener.LocationListCallback callback);
+        void doGetCities(Integer stateId, Integer limit, Integer offset, IDetailListener.LocationListCallback callback);
         //void doUploadFile()
+        void init(V view);
+        void dismiss();
     }
 }

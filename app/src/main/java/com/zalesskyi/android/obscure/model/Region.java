@@ -9,6 +9,11 @@ public class Region implements Location {
     @SerializedName("title")
     String mTitle;
 
+    public Region(Integer id, String title) {
+        mId = id;
+        mTitle = title;
+    }
+
     @Override
     public Integer getId() {
         return mId;

@@ -10,6 +10,10 @@ public interface IMainListener {
 
     void getImage();
 
+    void chooseCountry();
+    void chooseRegion();
+    void chooseCity();
+
 
     interface IDashboardCallback {
         void showFeed(List<Event> events);
