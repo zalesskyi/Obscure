@@ -28,6 +28,7 @@ public class LocationListFragment extends Fragment implements IDetailListener.Lo
     public static final int LOCATION_TYPE_REGIONS = 1;
     public static final int LOCATION_TYPE_CITIES = 2;
 
+
     private LocationAdapter mAdapter;
     private IDetailListener mListener;
     private int mType;
