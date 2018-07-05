@@ -26,5 +26,6 @@ public class LocationHolder extends RecyclerView.ViewHolder {
 
     public void bindLocation(Location location) {
         mLocationText.setText(location.getTitle());
+        itemView.setOnClickListener(v -> mItemListener.choose(location));
     }
 }

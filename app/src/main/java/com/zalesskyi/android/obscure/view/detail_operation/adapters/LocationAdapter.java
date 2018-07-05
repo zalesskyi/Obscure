@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import com.zalesskyi.android.obscure.R;
 import com.zalesskyi.android.obscure.model.Location;
@@ -14,11 +16,15 @@ import com.zalesskyi.android.obscure.view.detail_operation.listeners.LocationIte
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocationAdapter extends RecyclerView.Adapter<LocationHolder>{
+public class LocationAdapter extends RecyclerView.Adapter<LocationHolder> implements Filterable {
 
     private Context mContext;
     private LocationItemListener mListener;
-    private List<Location> mList = new ArrayList<>();
+    public static final int UNSELECTED = -1;
+    public static int sSelectedItem = UNSELECTED;
+    private RecyclerView mRecyclerView;
+    private List<Location> mOriginalList = new ArrayList<>();
+    private LocationFilter mFilter;
 
     public LocationAdapter(Context ctx, LocationItemListener listener) {
         mContext = ctx;
@@ -35,20 +41,36 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull LocationHolder holder, int position) {
-        holder.bindLocation(mList.get(position));
+        holder.bindLocation(mOriginalList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return mOriginalList.size();
     }
 
     public void addLocation(Location location) {
-        mList.add(location);
+        mOriginalList.add(location);
         notifyDataSetChanged();
     }
 
     public void addLocationsList(List<Location> locations) {
-        mList.addAll(locations);
+        mOriginalList.addAll(locations);
+        notifyDataSetChanged();
+    }
+
+    public void setLocationsList(List<Location> locations) {
+        mOriginalList.clear();
+        mOriginalList.addAll(locations);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (mFilter == null) {
+            mFilter = new LocationFilter(
+                    this, new ArrayList<>(mOriginalList));
+        }
+        return mFilter;
     }
 }

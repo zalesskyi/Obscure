@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.zalesskyi.android.obscure.R;
 import com.zalesskyi.android.obscure.model.Location;
@@ -46,6 +49,9 @@ public class LocationListFragment extends Fragment implements IDetailListener.Lo
 
     @BindView(R.id.location_list)
     RecyclerView mRecyclerView;
+
+    @BindView(R.id.location_search)
+    EditText mSearchView;
 
     public static LocationListFragment newInstance(int type, IDetailListener listener, int locationId) {
         LocationListFragment fragment = new LocationListFragment();
@@ -87,6 +93,23 @@ public class LocationListFragment extends Fragment implements IDetailListener.Lo
         } else if (mType == LOCATION_TYPE_CITIES) {
             mListener.getCities(this, mLocationId);
         }
+
+        mSearchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mAdapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override
